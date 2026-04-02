@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#080808"/>
+
+  <!-- Ambient glow top center -->
+  <radialGradient id="glow1" cx="50%" cy="30%" r="50%">
+    <stop offset="0%" stop-color="#e8b86d" stop-opacity="0.12"/>
+    <stop offset="100%" stop-color="#080808" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+
+  <!-- Ambient glow bottom right -->
+  <radialGradient id="glow2" cx="85%" cy="80%" r="40%">
+    <stop offset="0%" stop-color="#5b5bd6" stop-opacity="0.1"/>
+    <stop offset="100%" stop-color="#080808" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- Subtle grid -->
+  <defs>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Top border accent -->
+  <rect x="0" y="0" width="1200" height="1" fill="rgba(232,184,109,0.3)"/>
+
+  <!-- Logo -->
+  <text x="80" y="90" font-family="Georgia, serif" font-size="28" font-weight="600" fill="#f2f2f0" letter-spacing="-0.5">build<tspan fill="#e8b86d">.</tspan>studio</text>
+
+  <!-- Main headline -->
+  <text x="80" y="240" font-family="Georgia, serif" font-size="72" font-weight="500" fill="#f2f2f0" letter-spacing="-3">Digital Products.</text>
+  <text x="80" y="330" font-family="Georgia, serif" font-size="72" font-weight="500" font-style="italic" letter-spacing="-3">
+    <tspan fill="url(#amberGrad)">Built Differently.</tspan>
+  </text>
+
+  <!-- Amber gradient for italic text -->
+  <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#f0cb8a"/>
+    <stop offset="50%" stop-color="#e8b86d"/>
+    <stop offset="100%" stop-color="#c4963a"/>
+  </linearGradient>
+
+  <!-- Subtext -->
+  <text x="80" y="400" font-family="Arial, sans-serif" font-size="22" font-weight="300" fill="#666666" letter-spacing="0.2">
+    Web · Apps · AI Automation · UX/UI Design
+  </text>
+
+  <!-- Stats row -->
+  <rect x="80" y="460" width="1" height="80" fill="rgba(232,184,109,0.2)"/>
+
+  <text x="104" y="495" font-family="Georgia, serif" font-size="32" font-weight="500" fill="#e8b86d">150+</text>
+  <text x="104" y="522" font-family="Arial, sans-serif" font-size="13" font-weight="300" fill="#666" letter-spacing="1.5">PROJECTS</text>
+
+  <rect x="260" y="460" width="1" height="80" fill="rgba(232,184,109,0.1)"/>
+
+  <text x="284" y="495" font-family="Georgia, serif" font-size="32" font-weight="500" fill="#e8b86d">12+</text>
+  <text x="284" y="522" font-family="Arial, sans-serif" font-size="13" font-weight="300" fill="#666" letter-spacing="1.5">COUNTRIES</text>
+
+  <rect x="420" y="460" width="1" height="80" fill="rgba(232,184,109,0.1)"/>
+
+  <text x="444" y="495" font-family="Georgia, serif" font-size="32" font-weight="500" fill="#e8b86d">98%</text>
+  <text x="444" y="522" font-family="Arial, sans-serif" font-size="13" font-weight="300" fill="#666" letter-spacing="1.5">SATISFACTION</text>
+
+  <!-- Right side decorative card -->
+  <rect x="820" y="160" width="300" height="300" rx="20" fill="rgba(255,255,255,0.03)" stroke="rgba(232,184,109,0.15)" stroke-width="1"/>
+  <rect x="840" y="190" width="100" height="8" rx="4" fill="rgba(232,184,109,0.2)"/>
+  <rect x="840" y="210" width="260" height="8" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <rect x="840" y="228" width="200" height="8" rx="4" fill="rgba(255,255,255,0.04)"/>
+  <rect x="840" y="260" width="260" height="60" rx="10" fill="rgba(91,91,214,0.08)" stroke="rgba(91,91,214,0.15)" stroke-width="1"/>
+  <rect x="840" y="340" width="260" height="60" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="840" y="420" width="120" height="20" rx="10" fill="rgba(232,184,109,0.3)"/>
+
+  <!-- Available badge -->
+  <rect x="820" y="110" width="190" height="32" rx="16" fill="rgba(74,222,128,0.08)" stroke="rgba(74,222,128,0.2)" stroke-width="1"/>
+  <circle cx="843" cy="126" r="4" fill="#4ade80"/>
+  <text x="856" y="131" font-family="monospace" font-size="11" fill="#4ade80" letter-spacing="1.5">AVAILABLE NOW</text>
+
+  <!-- Bottom URL -->
+  <text x="80" y="600" font-family="monospace" font-size="14" fill="rgba(102,102,102,0.6)" letter-spacing="1">build.studio</text>
+</svg>
