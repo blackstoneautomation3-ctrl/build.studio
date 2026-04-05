@@ -441,7 +441,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
                 <span key={c} className="w-2.5 h-2.5 rounded-full" style={{ background: c }} />
               ))}
             </div>
-            {[80, 55, 95, 40, 70].map((w, i) => (
+            {[80, 55, 95, 40, 70].map((w, idx) => (
               <div
                 key={i}
                 className="h-2 rounded-full mb-2.5 last:mb-0"
