@@ -1,308 +1,236 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  ArrowRight, ArrowUpRight, CheckCircle2,
-  Layers, Zap, Star, Menu, X,
-} from "lucide-react";
-
-// ─── TYPES ───────────────────────────────────────────────────────────────────
-interface StatItem { value: string; label: string; }
-interface ServiceItem { num: string; icon: React.ReactNode; title: string; desc: string; items: string[]; price: string; }
-interface ProjectItem { title: string; category: string; result: string; gradient: string; year: string; }
-interface ProcessStep { num: string; title: string; desc: string; day: string; }
-interface TestimonialItem { quote: string; name: string; role: string; initials: string; stars: number; }
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, CheckCircle2, Layers, Zap, Star } from "lucide-react";
+import { Navbar, Footer, FinalCTA, useReveal, LINKS } from "@/components/ui";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
-const STATS: StatItem[] = [
-  { value: "150+", label: "Products Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "12+", label: "Countries Served" },
-  { value: "$2M+", label: "Revenue Generated" },
-];
-
 const TICKER_ITEMS = [
-  "Web Apps", "Mobile Apps", "SaaS Products", "AI Automation",
-  "UX/UI Design", "E-commerce", "Dashboards", "AI Chatbots",
-  "Next.js", "React Native", "Supabase", "OpenAI API",
+  "Web Apps","Mobile Apps","SaaS Products","AI Automation",
+  "UX/UI Design","E-commerce","Dashboards","AI Chatbots",
+  "Next.js","React Native","Supabase","OpenAI API",
 ];
 
-const SERVICES: ServiceItem[] = [
+const SERVICES = [
   {
-    num: "01",
-    icon: <Layers size={20} />,
+    num: "01", icon: <Layers size={20} />,
     title: "Web & App Development",
     desc: "We build fast, scalable, and beautiful web and mobile applications that your users will love and your business will grow on.",
-    items: ["Business Websites", "Web Applications", "Mobile Apps (iOS & Android)", "SaaS Products", "E-commerce Stores"],
+    items: ["Business Websites","Web Applications","Mobile Apps (iOS & Android)","SaaS Products","E-commerce Stores"],
     price: "From $500",
   },
   {
-    num: "02",
-    icon: <Star size={20} />,
+    num: "02", icon: <Star size={20} />,
     title: "UX/UI Design",
     desc: "Great products don't just work — they feel effortless. We craft interfaces that are intuitive, visually stunning, and built to convert.",
-    items: ["Product Design", "Website UI Design", "Mobile App Design", "Design Systems", "Prototyping"],
+    items: ["Product Design","Website UI Design","Mobile App Design","Design Systems","Prototyping"],
     price: "From $300",
   },
   {
-    num: "03",
-    icon: <Zap size={20} />,
+    num: "03", icon: <Zap size={20} />,
     title: "AI Automation & Tools",
     desc: "We integrate AI and automation into your workflows, products, and customer experiences — saving time and unlocking revenue.",
-    items: ["Custom AI Chatbots", "Workflow Automation", "OpenAI API Integration", "Business Process Automation", "AI-Powered Features"],
+    items: ["Custom AI Chatbots","Workflow Automation","OpenAI API Integration","Business Process Automation","AI-Powered Features"],
     price: "From $400",
   },
 ];
 
-const PROJECTS: ProjectItem[] = [
-  {
-    title: "Taskflow Platform",
-    category: "SaaS · Web App · AI",
-    result: "+312% signups in 30 days",
-    gradient: "linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)",
-    year: "2026",
-  },
-  {
-    title: "SmartOnboard",
-    category: "Fintech · Mobile App",
-    result: "Onboarding reduced 83%",
-    gradient: "linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0d1b2a 100%)",
-    year: "2025",
-  },
+const PROJECTS = [
+  { title: "Taskflow Platform",  category: "SaaS · Web App · AI",    result: "+312% signups in 30 days",    gradient: "linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)", year: "2026" },
+  { title: "SmartOnboard",       category: "Fintech · Mobile App",    result: "Onboarding reduced 83%",      gradient: "linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0d1b2a 100%)", year: "2025" },
 ];
 
-const PROCESS_STEPS: ProcessStep[] = [
-  { num: "01", title: "Discovery", desc: "Deep dive into your goals, users, and business. No assumptions.", day: "Day 1" },
-  { num: "02", title: "Strategy", desc: "Full architecture map — pages, features, flows, integrations.", day: "Day 1–2" },
-  { num: "03", title: "Design", desc: "Every screen in Figma. You approve before we write a line of code.", day: "Day 2–5" },
-  { num: "04", title: "Build", desc: "Clean, scalable, production-grade code. Weekly progress updates.", day: "Day 5–14" },
-  { num: "05", title: "Test & QA", desc: "Rigorous testing across all devices, browsers, and edge cases.", day: "Day 14–16" },
-  { num: "06", title: "Launch", desc: "Live on time. Full handover. 30–60 days of free support.", day: "Day 16–18" },
+const PROCESS_STEPS = [
+  { num: "01", day: "Day 1",     title: "Discovery",   desc: "Deep dive into your goals, users, and business. No assumptions." },
+  { num: "02", day: "Day 1–2",   title: "Strategy",    desc: "Full architecture map — pages, features, flows, integrations." },
+  { num: "03", day: "Day 2–5",   title: "Design",      desc: "Every screen in Figma. You approve before we write a line of code." },
+  { num: "04", day: "Day 5–14",  title: "Build",       desc: "Clean, scalable, production-grade code. Weekly progress updates." },
+  { num: "05", day: "Day 14–16", title: "Test & QA",   desc: "Rigorous testing across all devices, browsers, and edge cases." },
+  { num: "06", day: "Day 16–18", title: "Launch",      desc: "Live on time. Full handover. 30–60 days of free support." },
 ];
 
-const TESTIMONIALS: TestimonialItem[] = [
-  {
-    quote: "Build.Studio didn't just build our platform — they transformed how we operate. Delivered in 2 weeks, flawlessly.",
-    name: "Sarah M.",
-    role: "Founder, Taskflow SaaS",
-    initials: "SM",
-    stars: 5,
-  },
-  {
-    quote: "The design quality is on par with the best agencies in the US. Delivered faster and at a fraction of the cost.",
-    name: "James T.",
-    role: "CEO, NovaMed Health",
-    initials: "JT",
-    stars: 5,
-  },
-  {
-    quote: "Our conversion rate jumped 60% after the redesign. Best investment we made this entire year.",
-    name: "Chioma A.",
-    role: "E-commerce Brand Owner",
-    initials: "CA",
-    stars: 5,
-  },
-  {
-    quote: "They automated our entire client onboarding process. What used to take 3 hours now takes 10 minutes.",
-    name: "David K.",
-    role: "Operations Director",
-    initials: "DK",
-    stars: 5,
-  },
+const TESTIMONIALS = [
+  { quote: "Build.Studio didn't just build our platform — they transformed how we operate. Delivered in 2 weeks, flawlessly.", name: "Sarah M.",  role: "Founder, Taskflow SaaS",       initials: "SM", stars: 5 },
+  { quote: "The design quality is on par with the best agencies in the US. Delivered faster and at a fraction of the cost.",   name: "James T.",  role: "CEO, NovaMed Health",           initials: "JT", stars: 5 },
+  { quote: "Our conversion rate jumped 60% after the redesign. The best investment we made this entire year.",                 name: "Chioma A.", role: "E-commerce Brand Owner",        initials: "CA", stars: 5 },
+  { quote: "They automated our entire client onboarding process. What used to take 3 hours now takes 10 minutes.",            name: "David K.",  role: "Operations Director",           initials: "DK", stars: 5 },
 ];
 
-// ─── HOOKS ───────────────────────────────────────────────────────────────────
-function useReveal() {
+// ─── STAT COUNT-UP ───────────────────────────────────────────────────────────
+interface StatDef { target: number; prefix?: string; suffix: string; label: string; }
+
+const STATS: StatDef[] = [
+  { target: 150, suffix: "+",  label: "Products Delivered" },
+  { target: 98,  suffix: "%",  label: "Client Satisfaction" },
+  { target: 12,  suffix: "+",  label: "Countries Served" },
+  { target: 2,   prefix: "$", suffix: "M+", label: "Revenue Generated" },
+];
+
+function StatCard({ stat }: { stat: StatDef }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const [done, setDone] = useState(false);
+
   useEffect(() => {
-    const els = document.querySelectorAll(".reveal");
+    const el = ref.current;
+    if (!el) return;
     const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, i) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => entry.target.classList.add("visible"), i * 80);
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 }
+      ([entry]) => { if (entry.isIntersecting) { setStarted(true); obs.disconnect(); } },
+      { threshold: 0.4 }
     );
-    els.forEach((el) => obs.observe(el));
+    obs.observe(el);
     return () => obs.disconnect();
   }, []);
-}
 
-function useCountUp(target: number, duration = 1800, started: boolean) {
-  const [count, setCount] = useState(0);
   useEffect(() => {
     if (!started) return;
-    let current = 0;
-    const step = target / (duration / 16);
+    let frame = 0;
+    const FRAMES = 72;
     const timer = setInterval(() => {
-      current += step;
-      if (current >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(current));
-    }, 16);
+      frame++;
+      const progress = frame / FRAMES;
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * stat.target));
+      if (frame >= FRAMES) { setCount(stat.target); setDone(true); clearInterval(timer); }
+    }, 1800 / FRAMES);
     return () => clearInterval(timer);
-  }, [target, duration, started]);
-  return count;
-}
-
-// ─── COMPONENTS ──────────────────────────────────────────────────────────────
-
-function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-
-  const links = ["Work", "Services", "About", "Process", "Blog"];
+  }, [started, stat.target]);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-obsidian/90 backdrop-blur-xl border-b border-white/[0.06]"
-          : "bg-transparent"
-      }`}
+    <div
+      ref={ref}
+      className="flex flex-col items-center justify-center py-12 px-6 border-r border-[#1a1a1a] last:border-r-0 hover:bg-white/[0.015] transition-colors group"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 h-[68px] flex items-center justify-between">
-        {/* Logo */}
-        <a href="/" className="font-body font-semibold text-[17px] text-snow tracking-tight">
-          build<span className="text-amber">.</span>studio
-        </a>
-
-        {/* Desktop Nav */}
-        <ul className="hidden lg:flex items-center gap-8">
-          {links.map((l) => (
-            <li key={l}>
-              <a
-                href={`/${l.toLowerCase()}`}
-                className="text-ash hover:text-snow transition-colors duration-200 text-sm font-medium tracking-wide"
-              >
-                {l}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* CTA */}
-        <div className="hidden lg:flex items-center gap-3">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03]">
-            <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-            <span className="font-mono text-[10px] text-green-400 tracking-wider">AVAILABLE</span>
-          </div>
-          <a href="/contact" className="btn-amber text-[13px] py-2.5 px-5">
-            Let&apos;s Talk <ArrowRight size={14} />
-          </a>
-        </div>
-
-        {/* Mobile burger */}
-        <button
-          className="lg:hidden text-snow p-1"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+      <div
+        className="font-display font-bold text-[#f4f4f4] leading-none tracking-[-0.04em] relative"
+        style={{ fontSize: "clamp(2.25rem, 4vw, 3.5rem)" }}
+      >
+        {stat.prefix}{count}
+        <span style={{ color: "#f0c060" }}>{stat.suffix}</span>
+        {done && (
+          <span
+            className="absolute -bottom-2 left-0 h-px"
+            style={{
+              background: "linear-gradient(90deg, #f0c060, transparent)",
+              animation: "count-underline 0.6s ease forwards",
+            }}
+          />
+        )}
       </div>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="lg:hidden bg-ink/95 backdrop-blur-xl border-b border-white/[0.06] px-6 py-6 flex flex-col gap-5">
-          {links.map((l) => (
-            <a
-              key={l}
-              href={`/${l.toLowerCase()}`}
-              className="text-ash hover:text-snow text-lg font-medium transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              {l}
-            </a>
-          ))}
-          <a href="/contact" className="btn-amber mt-2 justify-center">
-            Let&apos;s Talk <ArrowRight size={14} />
-          </a>
-        </div>
-      )}
-    </nav>
+      <div className="font-mono text-[11px] text-[#a3a3a3] tracking-[0.15em] uppercase mt-4">
+        {stat.label}
+      </div>
+    </div>
   );
 }
 
+// ─── HERO ────────────────────────────────────────────────────────────────────
 function Hero() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setVisible(true), 120); return () => clearTimeout(t); }, []);
+
+  const cls = (delay: number) =>
+    `transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`;
+
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-0 overflow-hidden">
-      {/* Ambient glows */}
-      <div className="glow-amber w-[700px] h-[700px] -top-32 left-1/2 -translate-x-1/2 opacity-50" />
-      <div className="glow-indigo w-[500px] h-[500px] bottom-0 right-0 opacity-40" />
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-28 pb-0 overflow-hidden bg-[#0a0a0a]">
+      {/* Ambient glow */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(240,192,96,0.07) 0%, transparent 65%)" }}
+        />
+        <div
+          className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(91,91,214,0.06) 0%, transparent 70%)" }}
+        />
+      </div>
 
       {/* Decorative grid */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }}
       />
 
       {/* Badge */}
       <div
-        className="relative z-10 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber/20 bg-amber/[0.06] mb-10"
-        style={{ animation: "fade-in 0.6s ease forwards" }}
+        className={`relative z-10 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#f0c060]/20 bg-[#f0c060]/[0.06] mb-10 ${cls(0)}`}
+        style={{ transitionDelay: "0ms" }}
       >
-        <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-        <span className="font-mono text-[11px] text-amber/80 tracking-[3px] uppercase">
-          Currently accepting projects
-        </span>
+        <span className="w-1.5 h-1.5 bg-[#4ade80] rounded-full animate-pulse" />
+        <span className="font-mono text-[11px] text-[#f0c060]/80 tracking-[0.2em] uppercase">Currently Accepting Projects</span>
       </div>
 
-      {/* Headline */}
-      <h1
-        className="relative z-10 font-display text-[clamp(52px,9vw,120px)] font-medium leading-[0.95] tracking-[-4px] text-snow max-w-5xl mb-8"
-        style={{ animation: "fade-up 0.8s ease 0.1s both" }}
-      >
-        Digital Products.
-        <br />
-        <em className="gradient-text not-italic">Built Differently.</em>
-      </h1>
-
-      {/* Sub */}
-      <p
-        className="relative z-10 text-[17px] text-ash max-w-[520px] leading-[1.8] font-light mb-12"
-        style={{ animation: "fade-up 0.8s ease 0.2s both" }}
-      >
-        We design, develop, and automate world-class web and mobile products
-        for startups, brands, and enterprises — wherever you are in the world.
-      </p>
-
-      {/* CTAs */}
+      {/* BUILD.STUDIO — dominant brand */}
       <div
-        className="relative z-10 flex flex-wrap gap-3 justify-center mb-20"
-        style={{ animation: "fade-up 0.8s ease 0.3s both" }}
+        className={`relative z-10 ${cls(1)}`}
+        style={{ transitionDelay: "100ms" }}
       >
-        <a href="/work" className="btn-amber">
-          See Our Work <ArrowUpRight size={15} />
-        </a>
-        <a href="/contact" className="btn-ghost">
-          Start a Project
-        </a>
+        <div className="font-mono text-[11px] text-[#666] tracking-[0.3em] uppercase mb-5">
+          Digital Product Studio
+        </div>
+
+        <h1
+          className="font-display font-bold text-[#f4f4f4] leading-[0.92] tracking-[-0.04em] mb-5"
+          style={{ fontSize: "clamp(3.25rem, 10vw, 9rem)" }}
+        >
+          BUILD.STUDIO
+        </h1>
+
+        <p
+          className="font-display font-semibold leading-[1.0] tracking-[-0.03em] mb-10"
+          style={{
+            fontSize: "clamp(1.75rem, 4.5vw, 4.5rem)",
+            fontWeight: 600,
+            fontStyle: "italic",
+            background: "linear-gradient(135deg, #f0cb8a 0%, #e8b86d 50%, #c4963a 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          Built Differently.
+        </p>
+
+        <p
+          className="text-[#a3a3a3] max-w-[520px] mx-auto font-light mb-12 leading-[1.85]"
+          style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)" }}
+        >
+          We design, develop, and automate world-class digital products for startups,
+          brands, and enterprises — wherever you are in the world.
+        </p>
+
+        {/* CTAs */}
+        <div
+          className={`flex flex-wrap gap-4 justify-center ${cls(2)}`}
+          style={{ transitionDelay: "250ms" }}
+        >
+          <Link href="/contact" className="btn-amber" style={{ padding: "16px 36px", fontSize: "0.9375rem" }}>
+            Start a Project <ArrowUpRight size={16} />
+          </Link>
+          <Link href="/work" className="btn-ghost" style={{ padding: "16px 36px", fontSize: "0.9375rem" }}>
+            See Our Work
+          </Link>
+        </div>
       </div>
 
-      {/* Marquee ticker */}
+      {/* Ticker */}
       <div
-        className="relative z-10 w-full overflow-hidden border-t border-b border-white/[0.06] py-4"
-        style={{ animation: "fade-in 0.8s ease 0.5s both" }}
+        className={`relative z-10 w-full overflow-hidden border-t border-b border-[#1a1a1a] py-4 mt-20 ${cls(3)}`}
+        style={{ transitionDelay: "400ms" }}
       >
         <div className="animate-marquee">
           {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
             <span
               key={i}
-              className="font-mono text-[11px] text-ash uppercase tracking-[2px] px-8 flex items-center gap-8 whitespace-nowrap"
+              className="font-mono text-[11px] text-[#555] uppercase tracking-[0.15em] px-8 flex items-center gap-8 whitespace-nowrap"
             >
               {item}
-              <span className="text-amber/40 text-lg">✦</span>
+              <span style={{ color: "rgba(240,192,96,0.35)", fontSize: "18px" }}>✦</span>
             </span>
           ))}
         </div>
@@ -311,245 +239,182 @@ function Hero() {
   );
 }
 
-function StatCard({ stat, index }: { stat: StatItem; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [started, setStarted] = useState(false);
-  const numericValue = parseInt(stat.value.replace(/[^0-9]/g, ""), 10);
-  const count = useCountUp(numericValue, 1800, started);
-  const suffix = stat.value.replace(/[0-9]/g, "");
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setStarted(true); obs.disconnect(); } },
-      { threshold: 0.5 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
+// ─── STATS BAR ───────────────────────────────────────────────────────────────
+function StatsBar() {
   return (
-    <div
-      ref={ref}
-      className="flex flex-col items-center justify-center py-10 px-6 border-r border-white/[0.06] last:border-r-0 hover:bg-white/[0.02] transition-colors"
-      style={{ animationDelay: `${index * 100}ms` }}
-    >
-      <div className="font-display text-[clamp(36px,4vw,54px)] font-medium text-snow tracking-[-2px] leading-none">
-        {suffix.startsWith("$") ? `$${count}` : count}
-        <span className="gradient-text">
-          {suffix.startsWith("$") ? suffix.slice(1) : suffix}
-        </span>
-      </div>
-      <div className="font-mono text-[11px] text-ash tracking-[1.5px] uppercase mt-3">
-        {stat.label}
+    <div className="border-t border-b border-[#1a1a1a] bg-[#0d0d0d]">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-[#1a1a1a]">
+        {STATS.map((s, i) => <StatCard key={i} stat={s} />)}
       </div>
     </div>
   );
 }
 
-function SocialProofBar() {
-  return (
-    <div className="border-t border-b border-white/[0.06] bg-ink/50">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/[0.06]">
-        {STATS.map((stat, i) => (
-          <StatCard key={i} stat={stat} index={i} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
+// ─── SERVICES ────────────────────────────────────────────────────────────────
 function Services() {
   return (
-    <section className="py-32 px-6 lg:px-12 max-w-7xl mx-auto">
-      <div className="mb-16 reveal">
-        <div className="section-label mb-5">What We Do</div>
-        <h2 className="font-display text-[clamp(36px,4.5vw,60px)] font-medium leading-[1.05] tracking-[-2px] text-snow max-w-xl">
-          Everything Your Product Needs —{" "}
-          <em className="gradient-text not-italic">Under One Roof.</em>
-        </h2>
-      </div>
-
-      <div className="grid lg:grid-cols-3 gap-[1px] bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.06]">
-        {SERVICES.map((s) => (
-          <div
-            key={s.num}
-            className="group relative bg-obsidian hover:bg-carbon p-10 transition-colors duration-300 flex flex-col gap-6 reveal"
+    <section className="py-36 px-6 lg:px-12 bg-[#0a0a0a]">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-16 reveal">
+          <div className="section-label mb-5">What We Do</div>
+          <h2
+            className="font-display font-bold text-[#f4f4f4] leading-[1.05] tracking-[-0.03em] max-w-xl"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
           >
-            {/* Number */}
-            <div className="font-mono text-[10px] text-amber tracking-[3px]">{s.num}</div>
+            Everything Your Product Needs —{" "}
+            <em
+              className="not-italic"
+              style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+            >
+              Under One Roof.
+            </em>
+          </h2>
+        </div>
 
-            {/* Icon */}
-            <div className="w-11 h-11 rounded-xl bg-amber/10 border border-amber/20 flex items-center justify-center text-amber">
-              {s.icon}
-            </div>
-
-            {/* Title */}
-            <h3 className="font-display text-[22px] font-medium text-snow tracking-[-0.5px]">
-              {s.title}
-            </h3>
-
-            {/* Desc */}
-            <p className="text-[14px] text-ash leading-[1.8] font-light">{s.desc}</p>
-
-            {/* List */}
-            <ul className="flex flex-col gap-2 mt-1 flex-1">
-              {s.items.map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-[13px] text-silver font-light">
-                  <CheckCircle2 size={13} className="text-amber/60 flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            {/* Price */}
-            <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
-              <span className="font-mono text-[12px] text-amber">{s.price}</span>
-              <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-ash group-hover:border-amber/30 group-hover:text-amber transition-all duration-300">
-                <ArrowUpRight size={14} />
+        <div className="grid lg:grid-cols-3 gap-[1px] bg-[#1a1a1a] rounded-2xl overflow-hidden border border-[#1a1a1a]">
+          {SERVICES.map((s) => (
+            <div
+              key={s.num}
+              className="group bg-[#0a0a0a] hover:bg-[#111] p-10 flex flex-col gap-6 transition-colors duration-300 reveal"
+            >
+              <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em]">{s.num}</div>
+              <div className="w-11 h-11 rounded-xl bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center text-[#f0c060] group-hover:scale-105 transition-transform">
+                {s.icon}
+              </div>
+              <h3 className="font-display font-semibold text-[#f4f4f4] tracking-[-0.02em]" style={{ fontSize: "1.375rem" }}>
+                {s.title}
+              </h3>
+              <p className="text-[14px] text-[#a3a3a3] leading-[1.8] font-light flex-1">{s.desc}</p>
+              <ul className="flex flex-col gap-2.5 mt-1">
+                {s.items.map((item) => (
+                  <li key={item} className="flex items-center gap-2.5 text-[13px] text-[#c8c8c8] font-light">
+                    <CheckCircle2 size={13} className="flex-shrink-0" style={{ color: "rgba(240,192,96,0.6)" }} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex items-center justify-between pt-4 border-t border-[#1a1a1a]">
+                <span className="font-mono text-[12px] text-[#f0c060]">{s.price}</span>
+                <div className="w-8 h-8 rounded-full border border-[#222] flex items-center justify-center text-[#666] group-hover:border-[#f0c060]/30 group-hover:text-[#f0c060] transition-all">
+                  <ArrowUpRight size={14} />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-function ProjectCard({ project }: { project: ProjectItem }) {
-  const [hovered, setHovered] = useState(false);
-
+// ─── PORTFOLIO ───────────────────────────────────────────────────────────────
+function Mockup() {
   return (
-    <div
-      className="group relative rounded-2xl overflow-hidden border border-white/[0.07] hover-lift cursor-pointer"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Visual */}
-      <div
-        className="relative h-72 overflow-hidden flex items-center justify-center"
-        style={{ background: project.gradient }}
-      >
-        {/* Floating UI mockup */}
-        <div
-          className={`relative w-[70%] transition-transform duration-700 ${hovered ? "-translate-y-2" : ""}`}
-          style={{ animation: "float 7s ease-in-out infinite" }}
-        >
-          <div className="bg-white/[0.06] backdrop-blur-sm border border-white/[0.12] rounded-2xl p-5">
-            <div className="flex gap-1.5 mb-4">
-              {["#ff5f57","#febc2e","#28c840"].map((c) => (
-                <span key={c} className="w-2.5 h-2.5 rounded-full" style={{ background: c }} />
-              ))}
-            </div>
-            {[80, 55, 95, 40, 70].map((w, i) => (
-              <div
-                key={i}
-                className="h-2 rounded-full mb-2.5 last:mb-0"
-                style={{ width: `${w}%`, background: "rgba(255,255,255,0.08)" }}
-              />
-            ))}
-          </div>
-          {/* Floating card */}
-          <div className="absolute -top-4 -right-4 bg-obsidian/90 border border-white/10 rounded-xl px-3 py-2">
-            <div className="font-mono text-[9px] text-amber tracking-wider uppercase mb-0.5">Result</div>
-            <div className="text-[11px] text-green-400 font-medium">{project.result}</div>
-          </div>
-        </div>
+    <div className="w-[68%] bg-white/[0.05] border border-white/[0.1] rounded-2xl p-5 backdrop-blur-sm">
+      <div className="flex gap-1.5 mb-4">
+        {["#ff5f57","#febc2e","#28c840"].map((c) => (
+          <span key={c} className="w-2.5 h-2.5 rounded-full block" style={{ background: c }} />
+        ))}
       </div>
-
-      {/* Info */}
-      <div className="bg-ink p-7">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <div className="font-mono text-[10px] text-amber tracking-[2px] uppercase mb-2">
-              {project.category} · {project.year}
-            </div>
-            <h3 className="font-display text-[22px] font-medium text-snow tracking-[-0.5px]">
-              {project.title}
-            </h3>
-          </div>
-          <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-ash group-hover:border-amber/40 group-hover:text-amber transition-all duration-300 flex-shrink-0 mt-1">
-            <ArrowUpRight size={15} />
-          </div>
-        </div>
-      </div>
+      {[80,55,95,40,70].map((w,i) => (
+        <div key={i} className="h-2 rounded-full mb-2.5 last:mb-0" style={{ width:`${w}%`, background:"rgba(255,255,255,0.07)" }} />
+      ))}
     </div>
   );
 }
 
-function ConceptWork() {
+function Portfolio() {
   return (
-    <section className="py-32 px-6 lg:px-12 max-w-7xl mx-auto">
-      <div className="flex items-end justify-between mb-16 gap-6 flex-wrap reveal">
-        <div>
-          <div className="section-label mb-5">Selected Work</div>
-          <h2 className="font-display text-[clamp(36px,4.5vw,60px)] font-medium leading-[1.05] tracking-[-2px] text-snow">
-            Products We&apos;re <em className="gradient-text not-italic">Proud Of.</em>
-          </h2>
-        </div>
-        <a href="/work" className="btn-ghost text-sm flex-shrink-0">
-          View All Work <ArrowRight size={14} />
-        </a>
-      </div>
-
-      <div className="grid lg:grid-cols-2 gap-6">
-        {PROJECTS.map((p) => (
-          <div key={p.title} className="reveal">
-            <ProjectCard project={p} />
+    <section className="py-36 px-6 lg:px-12 bg-[#0d0d0d] border-t border-[#1a1a1a]">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-end justify-between mb-16 gap-6 flex-wrap reveal">
+          <div>
+            <div className="section-label mb-5">Selected Work</div>
+            <h2 className="font-display font-bold text-[#f4f4f4] leading-[1.05] tracking-[-0.03em]"
+              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}>
+              Products We&apos;re{" "}
+              <em className="not-italic"
+                style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                Proud Of.
+              </em>
+            </h2>
           </div>
-        ))}
+          <Link href="/work" className="btn-ghost flex-shrink-0" style={{ fontSize: "0.875rem" }}>
+            View All Work <ArrowRight size={14} />
+          </Link>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-6">
+          {PROJECTS.map((p) => (
+            <div key={p.title} className="group rounded-2xl overflow-hidden border border-[#1a1a1a] hover-lift cursor-pointer reveal">
+              <div className="relative h-72 flex items-center justify-center overflow-hidden" style={{ background: p.gradient }}>
+                <div style={{ animation: "float 7s ease-in-out infinite" }} className="relative w-full flex justify-center">
+                  <Mockup />
+                </div>
+                <div className="absolute top-4 right-4 bg-[#0a0a0a]/85 border border-white/10 rounded-xl px-3 py-2">
+                  <div className="font-mono text-[9px] text-[#f0c060] tracking-wider uppercase mb-0.5">Result</div>
+                  <div className="text-[11px] text-[#4ade80] font-medium">{p.result}</div>
+                </div>
+              </div>
+              <div className="bg-[#111] p-7">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.15em] uppercase mb-2">
+                      {p.category} · {p.year}
+                    </div>
+                    <h3 className="font-display font-semibold text-[#f4f4f4] tracking-[-0.02em]" style={{ fontSize: "1.375rem" }}>
+                      {p.title}
+                    </h3>
+                  </div>
+                  <div className="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center text-[#666] group-hover:border-[#f0c060]/40 group-hover:text-[#f0c060] transition-all flex-shrink-0 mt-1">
+                    <ArrowUpRight size={15} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
+// ─── ABOUT ───────────────────────────────────────────────────────────────────
 function About() {
   return (
-    <section className="py-32 px-6 lg:px-12 bg-ink/40 border-t border-b border-white/[0.05]">
+    <section className="py-36 px-6 lg:px-12 bg-[#0a0a0a] border-t border-[#1a1a1a]">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-        {/* Left: founder card */}
+        {/* Founder card */}
         <div className="reveal">
           <div className="relative">
-            {/* Glow */}
-            <div className="glow-amber w-96 h-96 -top-20 -left-20 opacity-30" />
-
-            <div className="relative border-gradient rounded-3xl bg-carbon p-10 overflow-hidden">
-              {/* Decorative corner */}
-              <div className="absolute top-0 right-0 w-32 h-32 opacity-10"
-                style={{ background: "radial-gradient(circle at top right, var(--amber), transparent 70%)" }} />
-
-              {/* Avatar */}
-              <div className="w-20 h-20 rounded-2xl bg-amber/15 border border-amber/25 flex items-center justify-center mb-8">
-                <span className="font-display text-3xl font-medium text-amber">A</span>
+            <div className="glow-amber w-80 h-80 -top-16 -left-16 opacity-25" />
+            <div className="relative rounded-3xl bg-[#111] border border-[#1a1a1a] p-10 overflow-hidden">
+              <div className="absolute top-0 right-0 w-40 h-40 opacity-[0.08]"
+                style={{ background: "radial-gradient(circle at top right, #f0c060, transparent 70%)" }} />
+              <div className="w-20 h-20 rounded-2xl bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center mb-8">
+                <span className="font-display text-3xl font-bold text-[#f0c060]">A</span>
               </div>
-
-              <div className="font-mono text-[10px] text-amber tracking-[3px] uppercase mb-3">
-                Founder & Creative Director
+              <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em] uppercase mb-3">
+                Founder &amp; Creative Director
               </div>
-              <h3 className="font-display text-4xl font-medium text-snow tracking-[-1px] mb-4">Ayo</h3>
-              <p className="text-[14px] text-ash leading-[1.9] font-light mb-8">
+              <h3 className="font-display font-bold text-[#f4f4f4] tracking-[-0.03em] mb-4" style={{ fontSize: "2.5rem" }}>Ayo</h3>
+              <p className="text-[14px] text-[#a3a3a3] leading-[1.9] font-light mb-7">
                 5+ years building web products, AI automation tools, and digital experiences
                 at the highest level. Every project led with a bias for quality and a deep
                 understanding of what clients actually need to grow.
               </p>
-
-              {/* Skills */}
-              <div className="flex flex-wrap gap-2">
-                {["Next.js", "React Native", "AI Integration", "Product Strategy", "UX Design"].map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] font-mono text-[11px] text-silver"
-                  >
+              <div className="flex flex-wrap gap-2 mb-8">
+                {["Next.js","React Native","AI Integration","Product Strategy","UX Design"].map((skill) => (
+                  <span key={skill} className="px-3 py-1 rounded-full border border-[#222] bg-[#161616] font-mono text-[11px] text-[#a3a3a3]">
                     {skill}
                   </span>
                 ))}
               </div>
-
-              {/* Stats row */}
-              <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-white/[0.06]">
-                {[["5+", "Years"], ["150+", "Projects"], ["12+", "Countries"]].map(([val, lbl]) => (
+              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-[#1a1a1a]">
+                {[["5+","Years"],["150+","Projects"],["12+","Countries"]].map(([val,lbl]) => (
                   <div key={lbl}>
-                    <div className="font-display text-2xl font-medium text-snow gradient-text">{val}</div>
-                    <div className="font-mono text-[10px] text-ash tracking-wider uppercase mt-0.5">{lbl}</div>
+                    <div className="font-display font-bold leading-none" style={{ fontSize:"1.75rem", color:"#f0c060" }}>{val}</div>
+                    <div className="font-mono text-[10px] text-[#666] tracking-wider uppercase mt-1">{lbl}</div>
                   </div>
                 ))}
               </div>
@@ -557,40 +422,32 @@ function About() {
           </div>
         </div>
 
-        {/* Right: text */}
+        {/* Text */}
         <div className="reveal">
-          <div className="section-label mb-6">About Build.Studio</div>
-          <h2 className="font-display text-[clamp(34px,4vw,52px)] font-medium leading-[1.08] tracking-[-2px] text-snow mb-8">
+          <div className="section-label mb-6">About BUILD.STUDIO</div>
+          <h2 className="font-display font-bold text-[#f4f4f4] leading-[1.08] tracking-[-0.03em] mb-8"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
             Built to Be{" "}
-            <em className="gradient-text not-italic">Different.</em>
+            <em className="not-italic"
+              style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              Different.
+            </em>
           </h2>
-          <div className="flex flex-col gap-5 text-[15px] text-ash leading-[1.9] font-light">
-            <p>
-              Too many businesses have been burned by agencies that over-promise,
-              under-deliver, and disappear after the invoice is paid.
+          <div className="flex flex-col gap-5 text-[#a3a3a3] font-light leading-[1.9]" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>
+            <p>Too many businesses have been burned by agencies that over-promise, under-deliver, and disappear after the invoice is paid.</p>
+            <p className="font-display font-medium text-[#c8c8c8] leading-[1.6]" style={{ fontSize: "clamp(1.0625rem, 1.5vw, 1.25rem)", fontStyle: "italic" }}>
+              &ldquo;We built Build.Studio to be different.&rdquo;
             </p>
-            <p className="font-display text-[19px] font-medium italic text-snow/80 leading-[1.5] -mx-0.5">
-              "We built Build.Studio to be different."
-            </p>
-            <p>
-              We believe great digital products should be accessible to every serious
-              business — not just those with Silicon Valley budgets. World-class design,
-              clean engineering, and intelligent automation delivered at honest prices.
-            </p>
-            <p>
-              Startups raising their first round. Established businesses going digital.
-              Solo founders turning ideas into real products. Whatever your stage — if
-              you&apos;re serious, we&apos;re in.
-            </p>
+            <p>We believe great digital products should be accessible to every serious business — not just those with Silicon Valley budgets.</p>
+            <p>Startups raising their first round. Established businesses going digital. Solo founders turning ideas into real products. Whatever your stage — if you&apos;re serious, we&apos;re in.</p>
           </div>
-
           <div className="flex flex-wrap gap-3 mt-10">
-            <a href="/about" className="btn-amber">
+            <Link href="/about" className="btn-amber" style={{ padding: "14px 30px", fontSize: "0.9rem" }}>
               Meet the Team <ArrowRight size={14} />
-            </a>
-            <a href="/work" className="btn-ghost">
+            </Link>
+            <Link href="/work" className="btn-ghost" style={{ padding: "14px 30px", fontSize: "0.9rem" }}>
               See Our Work
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -598,113 +455,108 @@ function About() {
   );
 }
 
+// ─── PROCESS (single — no duplication) ───────────────────────────────────────
 function Process() {
   return (
-    <section className="py-32 px-6 lg:px-12 max-w-7xl mx-auto">
-      <div className="text-center mb-20 reveal">
-        <div className="section-label mb-5 justify-center">How We Work</div>
-        <h2 className="font-display text-[clamp(36px,4.5vw,60px)] font-medium leading-[1.05] tracking-[-2px] text-snow max-w-2xl mx-auto">
-          A Process Designed{" "}
-          <em className="gradient-text not-italic">for Results.</em>
-        </h2>
-        <p className="text-[16px] text-ash max-w-md mx-auto mt-5 font-light leading-[1.8]">
-          No surprises. No delays. Just a clear, proven path from idea to launch — in 16–18 days.
-        </p>
-      </div>
+    <section className="py-36 px-6 lg:px-12 bg-[#0d0d0d] border-t border-[#1a1a1a]">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-20 reveal">
+          <div className="section-label mb-5 justify-center">How We Work</div>
+          <h2 className="font-display font-bold text-[#f4f4f4] leading-[1.05] tracking-[-0.03em] max-w-2xl mx-auto"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}>
+            From Idea to Live Product{" "}
+            <em className="not-italic"
+              style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              in 16–18 Days.
+            </em>
+          </h2>
+          <p className="text-[#a3a3a3] max-w-md mx-auto mt-5 font-light leading-[1.85]"
+            style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>
+            No surprises. No delays. A clear, proven path from idea to launch.
+          </p>
+        </div>
 
-      {/* Desktop timeline */}
-      <div className="hidden lg:grid grid-cols-6 gap-0 relative">
-        {/* Connecting line */}
-        <div className="absolute top-[19px] left-[calc(100%/12)] right-[calc(100%/12)] h-px bg-gradient-to-r from-transparent via-amber/30 to-transparent" />
+        {/* Desktop */}
+        <div className="hidden lg:grid grid-cols-6 gap-0 relative reveal">
+          <div className="absolute top-5 left-[8%] right-[8%] h-px"
+            style={{ background: "linear-gradient(90deg, transparent, rgba(240,192,96,0.2), transparent)" }} />
+          {PROCESS_STEPS.map((s) => (
+            <div key={s.num} className="flex flex-col items-center text-center px-3">
+              <div className="w-10 h-10 rounded-full border border-[#f0c060]/35 bg-[#0a0a0a] flex items-center justify-center mb-6 z-10 shadow-[0_0_20px_rgba(240,192,96,0.12)]">
+                <span className="font-mono text-[11px] text-[#f0c060]">{s.num}</span>
+              </div>
+              <div className="font-mono text-[9px] text-[#f0c060]/55 tracking-[0.15em] uppercase mb-2">{s.day}</div>
+              <h3 className="font-display font-semibold text-[#f4f4f4] text-[1rem] mb-2 tracking-[-0.02em]">{s.title}</h3>
+              <p className="text-[12px] text-[#a3a3a3] leading-[1.75] font-light">{s.desc}</p>
+            </div>
+          ))}
+        </div>
 
-        {PROCESS_STEPS.map((step, i) => (
-          <div key={step.num} className="flex flex-col items-center text-center px-3 reveal">
-            {/* Circle */}
-            <div className="relative mb-6 z-10">
-              <div className="w-10 h-10 rounded-full border border-amber/40 bg-obsidian flex items-center justify-center shadow-[0_0_20px_rgba(232,184,109,0.2)]">
-                <span className="font-mono text-[11px] text-amber">{step.num}</span>
+        {/* Mobile */}
+        <div className="lg:hidden flex flex-col">
+          {PROCESS_STEPS.map((s, i) => (
+            <div key={s.num} className="flex gap-5 reveal">
+              <div className="flex flex-col items-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full border border-[#f0c060]/35 bg-[#0a0a0a] flex items-center justify-center z-10">
+                  <span className="font-mono text-[11px] text-[#f0c060]">{s.num}</span>
+                </div>
+                {i < PROCESS_STEPS.length - 1 && (
+                  <div className="w-px flex-1 my-2 bg-gradient-to-b from-[#f0c060]/20 to-transparent" />
+                )}
+              </div>
+              <div className="pb-10 pt-1.5">
+                <div className="font-mono text-[9px] text-[#f0c060]/55 tracking-[0.15em] uppercase mb-1">{s.day}</div>
+                <h3 className="font-display font-semibold text-[#f4f4f4] mb-2" style={{ fontSize: "1.125rem" }}>{s.title}</h3>
+                <p className="text-[13px] text-[#a3a3a3] leading-[1.8] font-light">{s.desc}</p>
               </div>
             </div>
-            <div className="font-mono text-[9px] text-amber/60 tracking-[2px] uppercase mb-2">{step.day}</div>
-            <h3 className="font-display text-[17px] font-medium text-snow mb-2 tracking-[-0.3px]">{step.title}</h3>
-            <p className="text-[12px] text-ash leading-[1.7] font-light">{step.desc}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Mobile timeline */}
-      <div className="lg:hidden flex flex-col gap-0">
-        {PROCESS_STEPS.map((step, i) => (
-          <div key={step.num} className="flex gap-5 reveal">
-            {/* Left: number + line */}
-            <div className="flex flex-col items-center">
-              <div className="w-10 h-10 rounded-full border border-amber/40 bg-obsidian flex items-center justify-center flex-shrink-0 shadow-[0_0_16px_rgba(232,184,109,0.15)]">
-                <span className="font-mono text-[11px] text-amber">{step.num}</span>
-              </div>
-              {i < PROCESS_STEPS.length - 1 && (
-                <div className="w-px flex-1 bg-gradient-to-b from-amber/30 to-transparent my-2" />
-              )}
-            </div>
-            {/* Right: content */}
-            <div className="pb-8 pt-1.5">
-              <div className="font-mono text-[9px] text-amber/60 tracking-[2px] uppercase mb-1">{step.day}</div>
-              <h3 className="font-display text-[18px] font-medium text-snow mb-2 tracking-[-0.3px]">{step.title}</h3>
-              <p className="text-[13px] text-ash leading-[1.8] font-light">{step.desc}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-function TestimonialCard({ t }: { t: TestimonialItem }) {
-  return (
-    <div className="glass rounded-2xl p-8 flex flex-col gap-5 hover-lift reveal border border-white/[0.07]">
-      {/* Stars */}
-      <div className="flex gap-1">
-        {Array.from({ length: t.stars }).map((_, i) => (
-          <Star key={i} size={13} className="text-amber fill-amber" />
-        ))}
-      </div>
-
-      {/* Quote mark */}
-      <div className="font-display text-6xl text-amber/30 leading-none -mt-2">&ldquo;</div>
-
-      {/* Text */}
-      <p className="font-display text-[17px] font-medium italic text-snow/80 leading-[1.6] tracking-[-0.2px] -mt-5">
-        {t.quote}
-      </p>
-
-      {/* Author */}
-      <div className="flex items-center gap-3 mt-auto pt-5 border-t border-white/[0.06]">
-        <div className="w-9 h-9 rounded-full bg-amber/15 border border-amber/25 flex items-center justify-center font-body font-semibold text-[12px] text-amber">
-          {t.initials}
-        </div>
-        <div>
-          <div className="text-[13px] font-medium text-snow">{t.name}</div>
-          <div className="text-[11px] text-ash">{t.role}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
+// ─── TESTIMONIALS ────────────────────────────────────────────────────────────
 function Testimonials() {
   return (
-    <section className="py-32 px-6 lg:px-12 bg-ink/40 border-t border-white/[0.05]">
+    <section className="py-36 px-6 lg:px-12 bg-[#0a0a0a] border-t border-[#1a1a1a]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal">
           <div className="section-label mb-5 justify-center">Client Love</div>
-          <h2 className="font-display text-[clamp(36px,4.5vw,60px)] font-medium leading-[1.05] tracking-[-2px] text-snow">
-            Trusted by Founders &{" "}
-            <em className="gradient-text not-italic">Brands Worldwide.</em>
+          <h2 className="font-display font-bold text-[#f4f4f4] leading-[1.05] tracking-[-0.03em]"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}>
+            Trusted by Founders &amp;{" "}
+            <em className="not-italic"
+              style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              Brands Worldwide.
+            </em>
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {TESTIMONIALS.map((t) => (
-            <TestimonialCard key={t.name} t={t} />
+            <div key={t.initials} className="glass rounded-2xl p-8 flex flex-col gap-5 hover-lift reveal border border-[#1a1a1a]">
+              <div className="flex gap-0.5">
+                {Array.from({ length: t.stars }).map((_, i) => (
+                  <span key={i} style={{ color: "#f0c060", fontSize: "13px" }}>★</span>
+                ))}
+              </div>
+              <div className="font-display text-[3.5rem] text-[#f0c060]/20 leading-none -mt-2">&ldquo;</div>
+              <p className="font-display font-medium italic text-[#c8c8c8] leading-[1.65] tracking-[-0.01em] -mt-6"
+                style={{ fontSize: "1.0625rem" }}>
+                {t.quote}
+              </p>
+              <div className="flex items-center gap-3 mt-auto pt-5 border-t border-[#1a1a1a]">
+                <div className="w-9 h-9 rounded-full bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center font-body font-semibold text-[12px] text-[#f0c060] flex-shrink-0">
+                  {t.initials}
+                </div>
+                <div>
+                  <div className="text-[13px] font-medium text-[#f4f4f4]">{t.name}</div>
+                  <div className="text-[11px] text-[#a3a3a3]">{t.role}</div>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -712,170 +564,17 @@ function Testimonials() {
   );
 }
 
-function FinalCTA() {
-  return (
-    <section className="relative py-40 px-6 text-center overflow-hidden">
-      {/* Glows */}
-      <div className="glow-amber w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40" />
-      <div className="glow-indigo w-[500px] h-[500px] bottom-0 right-0 opacity-30" />
-
-      {/* Rotating ring */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-amber/[0.06] opacity-50"
-        style={{ animation: "border-spin 40s linear infinite" }}
-      />
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full border border-amber/[0.04]"
-        style={{ animation: "border-spin 30s linear infinite reverse" }}
-      />
-
-      <div className="relative z-10 max-w-4xl mx-auto">
-        <div className="section-label mb-6 justify-center reveal">Start Today</div>
-        <h2
-          className="font-display text-[clamp(44px,7vw,90px)] font-medium leading-[0.97] tracking-[-3.5px] text-snow mb-8 reveal"
-        >
-          Ready to Build
-          <br />
-          <em className="gradient-text not-italic">Something Great?</em>
-        </h2>
-        <p className="text-[17px] text-ash max-w-md mx-auto mb-12 font-light leading-[1.8] reveal">
-          Whether you have a fully formed idea or just a spark — we&apos;ll help you
-          shape it, design it, build it, and launch it to the world.
-        </p>
-
-        {/* Trust bar */}
-        <div className="flex flex-wrap items-center justify-center gap-6 mb-12 reveal">
-          {[
-            "⚡ 3–7 Day Delivery",
-            "🌍 12+ Countries",
-            "✦ Free Strategy Call",
-            "🔒 No Hidden Fees",
-          ].map((item) => (
-            <div key={item} className="flex items-center gap-2 text-[13px] text-ash font-light">
-              {item}
-            </div>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap gap-3 justify-center reveal">
-          <a href="/contact" className="btn-amber text-[15px] py-4 px-8">
-            Start a Project <ArrowRight size={16} />
-          </a>
-          <a href="/contact" className="btn-ghost text-[15px] py-4 px-8">
-            📅 Book a Free Call
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Footer() {
-  const NAV = ["Work", "Services", "About", "Process", "Blog", "Contact"];
-  const SERVICES_LIST = ["Web Development", "Mobile Apps", "UX/UI Design", "AI Automation", "SaaS Products"];
-
-  return (
-    <footer className="border-t border-white/[0.06] pt-16 pb-10 px-6 lg:px-12 bg-ink/60">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
-          {/* Brand */}
-          <div className="col-span-2 lg:col-span-1">
-            <div className="font-body font-semibold text-xl text-snow mb-4">
-              build<span className="text-amber">.</span>studio
-            </div>
-            <p className="text-[13px] text-ash font-light leading-[1.8] max-w-[220px] mb-6">
-              Digital Products. Built Differently. Serving clients globally from Lagos to London.
-            </p>
-            <div className="flex gap-2">
-              {["𝕏", "in", "ig", "gh"].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="w-8 h-8 rounded-lg border border-white/[0.08] bg-white/[0.03] flex items-center justify-center text-[12px] text-ash hover:border-amber/30 hover:text-amber transition-all"
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Navigation */}
-          <div>
-            <h4 className="font-mono text-[10px] text-snow tracking-[2.5px] uppercase mb-5">Navigation</h4>
-            <ul className="flex flex-col gap-3">
-              {NAV.map((item) => (
-                <li key={item}>
-                  <a href={`/${item.toLowerCase()}`} className="text-[13px] text-ash hover:text-snow transition-colors font-light">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="font-mono text-[10px] text-snow tracking-[2.5px] uppercase mb-5">Services</h4>
-            <ul className="flex flex-col gap-3">
-              {SERVICES_LIST.map((item) => (
-                <li key={item}>
-                  <a href="/services" className="text-[13px] text-ash hover:text-snow transition-colors font-light">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-mono text-[10px] text-snow tracking-[2.5px] uppercase mb-5">Contact</h4>
-            <ul className="flex flex-col gap-3 mb-6">
-              {[
-                { label: "hello@build.studio", href: "mailto:hello@build.studio" },
-                { label: "Book a Call →", href: "/contact" },
-                { label: "WhatsApp", href: "#" },
-              ].map((item) => (
-                <li key={item.label}>
-                  <a href={item.href} className="text-[13px] text-ash hover:text-snow transition-colors font-light">
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-green-500/20 bg-green-500/[0.06]">
-              <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-              <span className="font-mono text-[10px] text-green-400 tracking-wider">Available for Projects</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-3">
-          <div className="text-[12px] text-ash/60 font-light">
-            © 2026 <span className="text-amber/70">Build.Studio</span>. All rights reserved.
-          </div>
-          <div className="font-mono text-[10px] text-ash/40 tracking-wider uppercase">
-            Built with purpose. Delivered with pride.
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-// ─── PAGE ────────────────────────────────────────────────────────────────────
+// ─── PAGE ─────────────────────────────────────────────────────────────────────
 export default function Home() {
   useReveal();
-
   return (
     <>
       <Navbar />
       <main>
         <Hero />
-        <SocialProofBar />
+        <StatsBar />
         <Services />
-        <ConceptWork />
+        <Portfolio />
         <About />
         <Process />
         <Testimonials />
