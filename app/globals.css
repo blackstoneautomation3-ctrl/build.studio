@@ -8,34 +8,38 @@
   --font-display: 'Playfair Display';
   --font-body: 'Sora';
   --font-mono: 'JetBrains Mono';
-
+  
   /* Backgrounds */
   --obsidian: #0a0a0a;
-  --ink:      #111111;
-  --carbon:   #161616;
-  --iron:     #222222;
-  --smoke:    #2a2a2a;
-
+  --ink: #111111;
+  --carbon: #161616;
+  --iron: #222222;
+  --smoke: #2a2a2a;
+  
   /* Text — WCAG AA/AAA compliant */
-  --snow:     #f4f4f4;
-  --fog:      #c8c8c8;
-  --ash:      #a3a3a3;
-  --muted:    #666666;
-
+  --snow: #f4f4f4;
+  --fog: #c8c8c8;
+  --ash: #a3a3a3;
+  --muted: #666666;
+  
   /* Amber Gold — primary accent */
-  --amber:       #e8b86d;
+  --amber: #e8b86d;
   --amber-light: #f0cb8a;
-  --amber-bright:#f0c060;
-  --amber-dark:  #c4963a;
-  --amber-glow:  rgba(240,192,96,0.12);
-
+  --amber-bright: #f0c060;
+  --amber-dark: #c4963a;
+  --amber-glow: rgba(240,192,96,0.12);
+  
   /* Supporting */
-  --indigo:      #5b5bd6;
-  --indigo-light:#7b7bee;
-  --green-live:  #4ade80;
+  --indigo: #5b5bd6;
+  --indigo-light: #7b7bee;
+  --green-live: #4ade80;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
 
 html {
   scroll-behavior: smooth;
@@ -69,11 +73,14 @@ body::after {
 ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
 
 /* Selection */
-::selection { background: rgba(240,192,96,0.2); color: var(--amber-light); }
+::selection { 
+  background: rgba(240,192,96,0.2); 
+  color: var(--amber-light); 
+}
 
 /* ─── TYPOGRAPHY HELPERS ─── */
 .font-display { font-family: var(--font-display), serif; }
-.font-mono    { font-family: var(--font-mono), monospace; }
+.font-mono { font-family: var(--font-mono), monospace; }
 
 /* ─── GRADIENT TEXT ─── */
 .gradient-text {
@@ -105,7 +112,7 @@ body::after {
 /* ─── MARQUEE ─── */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to { transform: translateX(-50%); }
 }
 .animate-marquee {
   animation: marquee 32s linear infinite;
@@ -116,27 +123,23 @@ body::after {
 /* ─── REVEAL ANIMATIONS ─── */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 @keyframes fade-in {
   from { opacity: 0; }
-  to   { opacity: 1; }
+  to { opacity: 1; }
 }
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-12px); }
+  50% { transform: translateY(-12px); }
 }
 @keyframes glow-pulse {
   0%, 100% { opacity: 0.4; transform: scale(1); }
-  50%       { opacity: 0.7; transform: scale(1.04); }
-}
-@keyframes border-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  50% { opacity: 0.7; transform: scale(1.04); }
 }
 @keyframes count-underline {
   from { width: 0; }
-  to   { width: 100%; }
+  to { width: 100%; }
 }
 
 .reveal {
@@ -238,6 +241,7 @@ body::after {
   pointer-events: none;
   animation: glow-pulse 5s ease-in-out infinite;
 }
+
 .glow-indigo {
   position: absolute;
   border-radius: 50%;
@@ -248,8 +252,14 @@ body::after {
 
 /* ─── HERO BACKGROUND ANIMATION ─── */
 @keyframes hero-bg {
-  0%, 100% { opacity: 0.07; transform: scale(0.96); }
-  50%       { opacity: 0.13; transform: scale(1.05); }
+  0%, 100% { 
+    opacity: 0.07; 
+    transform: scale(0.96); 
+  }
+  50% { 
+    opacity: 0.13; 
+    transform: scale(1.05); 
+  }
 }
 
 .animate-hero-bg {
@@ -265,5 +275,8 @@ body::after {
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
-  .btn-amber, .btn-ghost { padding: 13px 26px; font-size: 0.875rem; }
-}s
+  .btn-amber, .btn-ghost { 
+    padding: 13px 26px; 
+    font-size: 0.875rem; 
+  }
+}
