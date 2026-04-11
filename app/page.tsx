@@ -193,96 +193,121 @@ function StatCard({ stat }: { stat: StatDef }) {
 function Hero() {
   const [visible, setVisible] = useState(false);
   useEffect(() => { const t = setTimeout(() => setVisible(true), 100); return () => clearTimeout(t); }, []);
-  const show = (delay: number) => ({
-    style: { transitionDelay: `${delay}ms` },
-    className: `transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`,
-  });
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-28 pb-0 overflow-hidden bg-[#0a0a0a]">
-      {/* Ambient glows */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(240,192,96,0.08) 0%, transparent 65%)" }} />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(91,91,214,0.06) 0%, transparent 70%)" }} />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070')` }}
+      >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/85" />
+        {/* Amber tint at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/3"
+          style={{ background: "linear-gradient(to top, rgba(240,192,96,0.04), transparent)" }} />
       </div>
 
-      {/* Grid */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
-        style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
-
-      {/* Badge */}
-      <div {...show(0)} className={`relative z-10 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#f0c060]/25 bg-[#f0c060]/[0.07] mb-10 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} transition-all duration-700`}>
-        <span className="w-1.5 h-1.5 bg-[#4ade80] rounded-full animate-pulse" />
-        <span className="font-mono text-[11px] text-[#f0c060] tracking-[0.2em] uppercase font-medium">Currently Accepting Projects</span>
-      </div>
-
-      {/* Brand lockup */}
-      <div className={`relative z-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "100ms" }}>
-        <div className="font-mono text-[12px] text-[#888] tracking-[0.35em] uppercase mb-5 font-medium">Digital Product Studio</div>
-
-        {/* BUILD.STUDIO — dominant */}
+      {/* Animated BUILD.STUDIO watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
         <h1
-          className="font-display font-bold text-white leading-[0.92] tracking-[-0.04em] mb-5"
-          style={{
-            fontSize: "clamp(3.25rem, 10vw, 9rem)",
-            textShadow: "0 0 80px rgba(240,192,96,0.15)",
-          }}
+          className="font-display font-bold tracking-[-0.08em] text-white animate-hero-bg select-none"
+          style={{ fontSize: "clamp(14vw, 18vw, 22vw)", opacity: 0.07 }}
         >
           BUILD.STUDIO
         </h1>
+      </div>
 
-        {/* Tagline */}
-        <p
-          className="font-display font-semibold leading-[1.0] tracking-[-0.03em] mb-10"
-          style={{
-            fontSize: "clamp(1.75rem, 4.5vw, 4.5rem)",
-            fontStyle: "italic",
-            background: "linear-gradient(135deg, #f0cb8a 0%, #e8b86d 50%, #c4963a 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          Built Differently.
-        </p>
+      {/* Main content */}
+      <div className="relative z-20 max-w-4xl mx-auto px-6 text-center w-full">
 
-        <p
-          className="text-[#c8c8c8] max-w-[540px] mx-auto font-light mb-12 leading-[1.9]"
-          style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)" }}
+        {/* Badge */}
+        <div
+          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/[0.05] backdrop-blur-sm mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
-          We design, develop, and automate world-class digital products for startups,
-          brands, and enterprises — wherever you are in the world.
-        </p>
+          <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+          <span className="font-mono text-[11px] text-white/80 tracking-[0.2em] uppercase font-medium">Currently Accepting Projects</span>
+        </div>
+
+        {/* Headline */}
+        <div className={`space-y-4 mb-8 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p
+            className="font-display font-light tracking-tight italic"
+            style={{
+              fontSize: "clamp(2.5rem, 6vw, 5rem)",
+              background: "linear-gradient(135deg, #f0cb8a 0%, #e8b86d 50%, #c4963a 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              lineHeight: 1.1,
+            }}
+          >
+            Built Differently.
+          </p>
+
+          <p
+            className="max-w-2xl mx-auto text-white/80 font-light leading-[1.85]"
+            style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)" }}
+          >
+            We design, develop, and automate world-class digital products for startups,
+            brands, and enterprises — wherever you are in the world.
+          </p>
+        </div>
 
         {/* CTAs */}
-        <div className={`flex flex-wrap gap-4 justify-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "280ms" }}>
-          <Link href="/contact" className="btn-amber" style={{ padding: "16px 36px", fontSize: "0.9375rem" }}>
+        <div
+          className={`flex flex-col sm:flex-row gap-4 justify-center mt-12 mb-8 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        >
+          <Link
+            href="/contact"
+            className="btn-amber"
+            style={{ padding: "18px 44px", fontSize: "0.9375rem", borderRadius: "16px" }}
+          >
             Start a Project <ArrowUpRight size={16} />
           </Link>
-          <Link href="/work" className="btn-ghost" style={{ padding: "16px 36px", fontSize: "0.9375rem" }}>
+          <Link
+            href="/work"
+            className="btn-ghost"
+            style={{ padding: "18px 44px", fontSize: "0.9375rem", borderRadius: "16px" }}
+          >
             See Our Work
           </Link>
         </div>
+
+        {/* Scroll indicator */}
+        <div
+          className={`flex flex-col items-center gap-2 mt-16 transition-all duration-700 delay-400 ${visible ? "opacity-100" : "opacity-0"}`}
+        >
+          <span className="font-mono text-[10px] text-white/40 tracking-[0.2em] uppercase">Scroll to explore</span>
+          <div className="w-px h-10 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
+        </div>
       </div>
 
-      {/* Premium Ticker */}
+      {/* Bottom trust bar */}
       <div
-        className={`relative z-10 w-full overflow-hidden mt-20 transition-all duration-700 ${visible ? "opacity-100" : "opacity-0"}`}
-        style={{ transitionDelay: "450ms" }}
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}
       >
-        {/* Gold premium ticker bar */}
-        <div className="relative py-3.5 border-t border-b border-[#f0c060]/15"
-          style={{ background: "linear-gradient(135deg, rgba(240,192,96,0.06) 0%, rgba(240,192,96,0.03) 50%, rgba(240,192,96,0.06) 100%)" }}>
-          {/* Soft edge fades */}
-          <div className="absolute inset-y-0 left-0 w-20 z-10 pointer-events-none" style={{ background: "linear-gradient(90deg, #0a0a0a, transparent)" }} />
-          <div className="absolute inset-y-0 right-0 w-20 z-10 pointer-events-none" style={{ background: "linear-gradient(-90deg, #0a0a0a, transparent)" }} />
+        <div className="flex items-center gap-6 lg:gap-10 font-mono text-[10px] text-white/40 tracking-[0.15em] uppercase whitespace-nowrap">
+          <span>16–18 Day Delivery</span>
+          <span className="text-[#f0c060]/30">✦</span>
+          <span>Worldwide</span>
+          <span className="text-[#f0c060]/30">✦</span>
+          <span>Transparent Pricing</span>
+        </div>
+      </div>
+
+      {/* Premium Ticker at bottom of hero */}
+      <div className="absolute bottom-0 left-0 right-0 z-30 overflow-hidden">
+        <div className="relative py-3 border-t border-[#f0c060]/10"
+          style={{ background: "linear-gradient(135deg, rgba(240,192,96,0.05) 0%, rgba(240,192,96,0.02) 50%, rgba(240,192,96,0.05) 100%)" }}>
+          <div className="absolute inset-y-0 left-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.8), transparent)" }} />
+          <div className="absolute inset-y-0 right-0 w-16 z-10 pointer-events-none" style={{ background: "linear-gradient(-90deg, rgba(0,0,0,0.8), transparent)" }} />
           <div className="animate-marquee">
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
               <span key={i} className="font-mono uppercase tracking-[0.18em] px-7 flex items-center gap-7 whitespace-nowrap font-medium"
-                style={{ fontSize: "0.7rem", color: "#d4a851" }}>
+                style={{ fontSize: "0.65rem", color: "#c4963a" }}>
                 {item}
-                <span style={{ color: "#f0c060", fontSize: "0.75rem", opacity: 0.6 }}>✦</span>
+                <span style={{ color: "#f0c060", opacity: 0.5 }}>✦</span>
               </span>
             ))}
           </div>
