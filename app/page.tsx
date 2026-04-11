@@ -1,27 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Navbar, Footer, FinalCTA, useReveal } from "@/components/ui";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
-const TICKER_ITEMS = [
-  "Web Apps","Mobile Apps","SaaS Products","AI Automation",
-  "UX/UI Design","E-commerce","Dashboards","AI Chatbots",
-  "Next.js","React Native","Supabase","OpenAI API",
-];
-
-const TRUSTED_LOGOS = [
-  { name: "Stripe", letter: "S", color: "#635bff" },
-  { name: "Notion", letter: "N", color: "#fff" },
-  { name: "Shopify", letter: "Sh", color: "#96bf48" },
-  { name: "Slack", letter: "Sl", color: "#4a154b" },
-  { name: "Airbnb", letter: "A", color: "#ff5a5f" },
-  { name: "Netflix", letter: "N", color: "#e50914" },
-];
-
-// Keep your STATS definition here
 const STATS = [
   { target: 150, suffix: "+", label: "Products Delivered" },
   { target: 98, suffix: "%", label: "Client Satisfaction" },
@@ -29,7 +13,7 @@ const STATS = [
   { target: 2, prefix: "$", suffix: "M+", label: "Revenue Generated" },
 ];
 
-// ─── STAT CARD COMPONENT ─────────────────────────────────────────────────────
+// ─── STAT CARD ───────────────────────────────────────────────────────────────
 function StatCard({ stat }) {
   const ref = useRef(null);
   const [count, setCount] = useState(0);
@@ -138,8 +122,10 @@ function Hero() {
         </div>
 
         <div className={`space-y-8 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className="font-display font-light tracking-tight italic text-[#e8b86d]" 
-             style={{ fontSize: "clamp(2.8rem, 7vw, 5.4rem)", lineHeight: 1.05 }}>
+          <p 
+            className="font-display font-light tracking-tight italic text-[#e8b86d]"
+            style={{ fontSize: "clamp(2.8rem, 7vw, 5.4rem)", lineHeight: 1.05 }}
+          >
             Built Differently.
           </p>
           <p className="max-w-2xl mx-auto text-[1.18rem] text-white/80 leading-relaxed">
@@ -163,7 +149,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className={`absolute bottom-10 left-1/2 -translate-x-1/2 text-xs tracking-widest text-white/50 font-mono flex gap-8 ${visible ? "opacity-100" : "opacity-0"}`}>
+      <div className={`absolute bottom-10 left-1/2 -translate-x-1/2 text-xs tracking-widest text-white/50 font-mono flex gap-8 transition-all duration-700 delay-600 ${visible ? "opacity-100" : "opacity-0"}`}>
         <span>16–18 DAY DELIVERY</span>
         <span>WORLDWIDE</span>
         <span>TRANSPARENT PRICING</span>
@@ -182,13 +168,6 @@ export default function Home() {
       <main>
         <Hero />
         <StatsBar />
-        {/* Add your other sections here when ready */}
-        {/* <TrustedBy /> */}
-        {/* <Services /> */}
-        {/* <Portfolio /> */}
-        {/* <About /> */}
-        {/* <Process /> */}
-        {/* <Testimonials /> */}
         <FinalCTA />
       </main>
       <Footer />
