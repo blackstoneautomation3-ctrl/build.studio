@@ -7,7 +7,7 @@ import { ArrowRight, Menu, X } from "lucide-react";
 // ─── REAL LINKS — update these with your actual URLs ───────────────────────
 export const LINKS = {
   whatsapp:  "https://wa.me/2348166494104?text=Hi%2C%20I%27m%20interested%20in%20Build.Studio%20services",
-  calendly:  "https://calendly.com/blackstoneautomation3/30min",
+  calendly:  "https://calendly.com/buildstudio",
   email:     "mailto:hello@build.studio",
   twitter:   "https://x.com/buildstudio",
   linkedin:  "https://linkedin.com/company/buildstudio",
