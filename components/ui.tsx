@@ -53,7 +53,7 @@ export function Navbar() {
       aria-label="Main navigation"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-[#1a1a1a]"
+          ? "bg-[#0a0a0a]/88 backdrop-blur-2xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
           : "bg-transparent"
       }`}
     >
@@ -62,8 +62,8 @@ export function Navbar() {
         {/* Logo — BUILD.STUDIO */}
         <Link href="/" className="group flex items-center">
           <span
-            className="font-display font-bold tracking-[0.04em] text-[#f4f4f4] group-hover:text-[#f0c060] transition-colors duration-300"
-            style={{ fontSize: "1.0625rem" }}
+            className="font-display font-bold tracking-[0.06em] text-[#f4f4f4] group-hover:text-[#f0c060] transition-colors duration-300"
+            style={{ fontSize: "clamp(0.95rem, 2.8vw, 1.125rem)" }}
           >
             BUILD<span style={{ color: "#f0c060" }}>.</span>STUDIO
           </span>

@@ -21,6 +21,9 @@
   --fog:      #c8c8c8;
   --ash:      #a3a3a3;
   --muted:    #666666;
+  --text-primary: #f4f4f4;
+  --text-secondary: #d4d4d4;
+  --text-muted: #a3a3a3;
 
   /* Amber Gold — primary accent */
   --amber:       #e8b86d;
@@ -45,10 +48,10 @@ html {
 
 body {
   background: var(--obsidian);
-  color: var(--snow);
+  color: var(--text-primary);
   font-family: var(--font-body), sans-serif;
-  font-weight: 300;
-  line-height: 1.85;
+  font-weight: 400;
+  line-height: 1.7;
   overflow-x: hidden;
 }
 
@@ -173,7 +176,7 @@ body::after {
   font-weight: 600;
   letter-spacing: 0.01em;
   text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
   overflow: hidden;
   cursor: pointer;
   border: none;
@@ -188,8 +191,9 @@ body::after {
   border-radius: inherit;
 }
 .btn-amber:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 16px 48px rgba(240,192,96,0.35), 0 4px 16px rgba(240,192,96,0.2);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 18px 52px rgba(240,192,96,0.4), 0 6px 22px rgba(240,192,96,0.22);
+  filter: brightness(1.03);
 }
 .btn-amber:hover::after { opacity: 1; }
 .btn-amber:active { transform: translateY(0) scale(0.99); }
@@ -201,8 +205,8 @@ body::after {
   gap: 8px;
   padding: 14px 34px;
   background: transparent;
-  color: var(--fog);
-  border: 1px solid var(--iron);
+  color: var(--text-secondary);
+  border: 1px solid #2c2c2c;
   border-radius: 100px;
   font-family: var(--font-body), sans-serif;
   font-size: 0.9375rem;
@@ -212,10 +216,30 @@ body::after {
   cursor: pointer;
 }
 .btn-ghost:hover {
-  border-color: rgba(240,192,96,0.3);
-  color: var(--snow);
-  background: rgba(240,192,96,0.04);
-  transform: translateY(-2px);
+  border-color: rgba(240,192,96,0.42);
+  color: var(--text-primary);
+  background: rgba(240,192,96,0.07);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(240,192,96,0.08);
+}
+
+@keyframes hero-brand-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 0 rgba(240,192,96,0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 18px rgba(240,192,96,0.14), 0 0 34px rgba(240,192,96,0.08);
+  }
+}
+
+.hero-brand-reveal {
+  animation: hero-brand-reveal 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ─── HOVER LIFT CARD ─── */
@@ -228,6 +252,87 @@ body::after {
   transform: translateY(-5px);
   border-color: rgba(240,192,96,0.2) !important;
   box-shadow: 0 24px 64px rgba(0,0,0,0.4), 0 0 0 1px rgba(240,192,96,0.06);
+}
+
+/* ─── PORTFOLIO CARDS ─── */
+.portfolio-card {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.36s ease,
+              box-shadow 0.36s ease;
+}
+.portfolio-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px transparent;
+  transition: box-shadow 0.32s ease;
+}
+.portfolio-card:hover {
+  transform: translateY(-8px) scale(1.012);
+  border-color: var(--amber-glow) !important;
+  box-shadow: 0 28px 64px rgba(0,0,0,0.44), 0 12px 28px rgba(0,0,0,0.3);
+}
+.portfolio-card:hover::after {
+  box-shadow: 0 0 34px var(--amber-glow), 0 0 0 1px var(--amber-glow);
+}
+.portfolio-media {
+  position: relative;
+  overflow: hidden;
+}
+.portfolio-media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.22), rgba(10,10,10,0.05));
+  transition: background 0.32s ease;
+  z-index: 1;
+}
+.portfolio-card:hover .portfolio-media::before {
+  background: linear-gradient(to top, rgba(10,10,10,0.55), rgba(10,10,10,0.16));
+}
+.portfolio-media-inner {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.portfolio-card:hover .portfolio-media-inner {
+  transform: scale(1.03);
+}
+
+/* ─── PROCESS STEPS ─── */
+.process-step-card {
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+.process-step-card:hover {
+  border-color: var(--amber-glow);
+  background: var(--amber-glow);
+  transform: translateY(-3px);
+}
+.process-step-orb {
+  box-shadow: 0 0 20px var(--amber-glow);
+}
+.process-timeline {
+  position: relative;
+}
+.process-timeline-line {
+  position: absolute;
+  top: 24px;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber-glow), transparent);
+  opacity: 0.7;
+}
+.process-mobile-row {
+  position: relative;
+}
+.process-mobile-connector {
+  background: linear-gradient(to bottom, var(--amber-glow), var(--smoke) 72%, transparent);
+  opacity: 0.85;
 }
 
 /* ─── AMBIENT GLOWS ─── */

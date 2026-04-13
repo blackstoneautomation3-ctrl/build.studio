@@ -202,18 +202,18 @@ function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070')` }}
       >
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/85" />
+        {/* Charcoal overlay for premium contrast without crushing image */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,10,10,0.78) 0%, rgba(17,17,17,0.82) 60%, rgba(10,10,10,0.88) 100%)" }} />
         {/* Amber tint at bottom */}
         <div className="absolute bottom-0 left-0 right-0 h-1/3"
-          style={{ background: "linear-gradient(to top, rgba(240,192,96,0.04), transparent)" }} />
+          style={{ background: "linear-gradient(to top, rgba(240,192,96,0.08), transparent)" }} />
       </div>
 
       {/* Animated BUILD.STUDIO watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
         <h1
-          className="font-display font-bold tracking-[-0.08em] text-white animate-hero-bg select-none"
-          style={{ fontSize: "clamp(14vw, 18vw, 22vw)", opacity: 0.07 }}
+          className="font-display font-bold tracking-[0.03em] text-[var(--text-primary)] animate-hero-bg select-none"
+          style={{ fontSize: "clamp(10vw, 14vw, 18vw)", opacity: 0.012 }}
         >
           BUILD.STUDIO
         </h1>
@@ -227,26 +227,31 @@ function Hero() {
           className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/[0.05] backdrop-blur-sm mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-          <span className="font-mono text-[11px] text-white/80 tracking-[0.2em] uppercase font-medium">Currently Accepting Projects</span>
+          <span className="font-mono text-[11px] text-[var(--text-secondary)] tracking-[0.2em] uppercase font-medium">Currently Accepting Projects</span>
         </div>
 
         {/* Headline */}
-        <div className={`space-y-4 mb-8 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p
-            className="font-display font-light tracking-tight italic"
+        <div className={`space-y-4 mb-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h1
+            className="font-display font-extrabold text-[var(--text-primary)] uppercase tracking-[0.08em] hero-brand-reveal"
             style={{
-              fontSize: "clamp(2.5rem, 6vw, 5rem)",
-              background: "linear-gradient(135deg, #f0cb8a 0%, #e8b86d 50%, #c4963a 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              lineHeight: 1.1,
+              fontSize: "clamp(4.5rem, 9vw, 9rem)",
+              lineHeight: 0.92,
             }}
           >
-            Built Differently.
+            BUILD.STUDIO
+          </h1>
+          <p className={`font-display font-bold uppercase tracking-[0.05em] text-[var(--text-secondary)] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.2rem, 2vw, 1.95rem)", lineHeight: 1.05 }}>
+            DIGITAL PRODUCTS.
+          </p>
+          <p className={`font-display font-bold uppercase tracking-[0.05em] text-[var(--text-primary)] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.2rem, 2vw, 1.95rem)", lineHeight: 1.05 }}>
+            BUILT DIFFERENTLY.
           </p>
 
           <p
-            className="max-w-2xl mx-auto text-white/80 font-light leading-[1.85]"
+            className="max-w-2xl mx-auto text-[var(--text-secondary)] font-normal leading-[1.75]"
             style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)" }}
           >
             We design, develop, and automate world-class digital products for startups,
@@ -260,15 +265,15 @@ function Hero() {
         >
           <Link
             href="/contact"
-            className="btn-amber"
+            className="btn-amber min-h-[52px] justify-center"
             style={{ padding: "18px 44px", fontSize: "0.9375rem", borderRadius: "16px" }}
           >
             Start a Project <ArrowUpRight size={16} />
           </Link>
           <Link
             href="/work"
-            className="btn-ghost"
-            style={{ padding: "18px 44px", fontSize: "0.9375rem", borderRadius: "16px" }}
+            className="btn-ghost min-h-[52px] justify-center"
+            style={{ padding: "18px 44px", fontSize: "0.9375rem", borderRadius: "16px", borderColor: "rgba(240,192,96,0.35)", color: "#f4f4f4", background: "rgba(255,255,255,0.02)" }}
           >
             See Our Work
           </Link>
@@ -278,7 +283,7 @@ function Hero() {
         <div
           className={`flex flex-col items-center gap-2 mt-16 transition-all duration-700 delay-400 ${visible ? "opacity-100" : "opacity-0"}`}
         >
-          <span className="font-mono text-[10px] text-white/40 tracking-[0.2em] uppercase">Scroll to explore</span>
+          <span className="font-mono text-[10px] text-[#a3a3a3] tracking-[0.2em] uppercase">Scroll to explore</span>
           <div className="w-px h-10 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
         </div>
       </div>
@@ -287,7 +292,7 @@ function Hero() {
       <div
         className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}
       >
-        <div className="flex items-center gap-6 lg:gap-10 font-mono text-[10px] text-white/40 tracking-[0.15em] uppercase whitespace-nowrap">
+        <div className="flex items-center gap-6 lg:gap-10 font-mono text-[10px] text-[#a3a3a3] tracking-[0.15em] uppercase whitespace-nowrap">
           <span>16–18 Day Delivery</span>
           <span className="text-[#f0c060]/30">✦</span>
           <span>Worldwide</span>
@@ -334,7 +339,7 @@ function TrustedBy() {
     <section className="py-20 px-6 lg:px-12 border-b border-[#1a1a1a] bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10 reveal">
-          <p className="font-mono text-[11px] text-[#555] tracking-[0.25em] uppercase font-medium">
+          <p className="font-mono text-[11px] text-[#a3a3a3] tracking-[0.25em] uppercase font-medium">
             Trusted by teams at world-class companies
           </p>
         </div>
@@ -400,7 +405,7 @@ function Services() {
               </ul>
               <div className="flex items-center justify-between pt-4 border-t border-[#1a1a1a]">
                 <span className="font-mono text-[12px] text-[#f0c060]">{s.price}</span>
-                <div className="w-8 h-8 rounded-full border border-[#222] flex items-center justify-center text-[#555] group-hover:border-[#f0c060]/30 group-hover:text-[#f0c060] transition-all">
+                <div className="w-8 h-8 rounded-full border border-[#222] flex items-center justify-center text-[#a3a3a3] group-hover:border-[#f0c060]/30 group-hover:text-[#f0c060] transition-all">
                   <ArrowUpRight size={14} />
                 </div>
               </div>
@@ -429,20 +434,17 @@ function Portfolio() {
   const rest = ALL_PROJECTS.slice(2);
 
   return (
-    <section className="py-36 px-6 lg:px-12 bg-[#0d0d0d] border-t border-[#1a1a1a]">
+    <section className="py-24 md:py-32 lg:py-40 px-6 lg:px-12 border-t" style={{ backgroundColor: "var(--ink)", borderColor: "var(--carbon)" }}>
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-end justify-between mb-16 gap-6 flex-wrap reveal">
+        <div className="flex items-end justify-between mb-20 gap-8 flex-wrap reveal">
           <div>
             <div className="section-label mb-5">Selected Work</div>
-            <h2 className="font-display font-bold text-white leading-[1.05] tracking-[-0.03em]"
-              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}>
-              Products We&apos;re{" "}
-              <em className="not-italic" style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                Proud Of.
-              </em>
+            <h2 className="font-display font-bold text-[var(--text-primary)] leading-[1.03] tracking-[-0.03em]"
+              style={{ fontSize: "clamp(2.4rem, 5vw, 4.4rem)" }}>
+              Selected Work
             </h2>
-            <p className="text-[#a3a3a3] mt-3 font-light" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>
-              Real results for real clients — not just beautiful designs.
+            <p className="text-[var(--text-secondary)] mt-4 max-w-xl leading-[1.75]" style={{ fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)" }}>
+              Premium product execution with measurable outcomes, delivered with speed and precision.
             </p>
           </div>
           <Link href="/work" className="btn-ghost flex-shrink-0" style={{ fontSize: "0.875rem" }}>
@@ -451,32 +453,42 @@ function Portfolio() {
         </div>
 
         {/* Featured 2 — large */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-6">
-          {featured.map((p) => (
-            <Link key={p.slug} href={`/work/${p.slug}`} className="group rounded-2xl overflow-hidden border border-[#1a1a1a] hover-lift cursor-pointer reveal block">
-              <div className="relative h-72 flex items-center justify-center overflow-hidden" style={{ background: p.gradient }}>
-                <div style={{ animation: "float 7s ease-in-out infinite" }} className="relative w-full flex justify-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 mb-8 md:mb-10">
+          {featured.map((p, i) => (
+            <Link
+              key={p.slug}
+              href={`/work/${p.slug}`}
+              className="group portfolio-card rounded-2xl overflow-hidden border cursor-pointer reveal block"
+              style={{ transitionDelay: `${120 + i * 90}ms`, borderColor: "var(--carbon)" }}
+            >
+              <div className="portfolio-media h-[20rem] sm:h-[22rem] flex items-center justify-center" style={{ background: p.gradient }}>
+                <div style={{ animation: "float 7s ease-in-out infinite" }} className="portfolio-media-inner w-full flex justify-center">
                   <Mockup />
                 </div>
-                <div className="absolute top-4 right-4 bg-[#0a0a0a]/85 border border-white/10 rounded-xl px-3 py-2">
-                  <div className="font-mono text-[9px] text-[#f0c060] tracking-wider uppercase mb-0.5">Result</div>
-                  <div className="text-[11px] text-[#4ade80] font-medium">{p.result}</div>
-                </div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
               </div>
-              <div className="bg-[#111] p-7">
-                <div className="flex items-start justify-between gap-4">
+              <div className="p-7 md:p-8" style={{ backgroundColor: "var(--ink)" }}>
+                <div className="flex items-stretch justify-between gap-5">
                   <div>
-                    <div className="flex flex-wrap gap-1.5 mb-3">
+                    <div className="flex flex-wrap gap-1.5 mb-3.5">
                       {p.tags.map((t) => (
-                        <span key={t} className="px-2.5 py-1 rounded-full border border-[#f0c060]/20 bg-[#f0c060]/[0.06] font-mono text-[10px] text-[#f0c060]/80">{t}</span>
+                        <span
+                          key={t}
+                          className="px-2.5 py-1 rounded-full border font-mono text-[10px]"
+                          style={{ borderColor: "var(--amber-glow)", backgroundColor: "var(--amber-glow)", color: "var(--amber-bright)" }}
+                        >
+                          {t}
+                        </span>
                       ))}
                     </div>
-                    <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.15em] uppercase mb-2">{p.category} · {p.year}</div>
-                    <h3 className="font-display font-semibold text-white tracking-[-0.02em]" style={{ fontSize: "1.375rem" }}>{p.title}</h3>
-                    <p className="text-[13px] text-[#a3a3a3] font-light mt-2 leading-[1.7]">{p.desc}</p>
+                    <div className="font-mono text-[10px] tracking-[0.15em] uppercase mb-2.5 text-[var(--amber-bright)]">{p.category} · {p.year}</div>
+                    <h3 className="font-display font-bold text-[var(--text-primary)] tracking-[-0.02em]" style={{ fontSize: "1.55rem" }}>{p.title}</h3>
+                    <p className="text-[13px] text-[var(--text-secondary)] mt-2.5 leading-[1.72]">{p.desc}</p>
+                    <p className="text-[12px] font-semibold mt-4 text-[var(--green-live)]">Outcome: {p.result}</p>
                   </div>
-                  <div className="w-9 h-9 rounded-full border border-[#222] flex items-center justify-center text-[#555] group-hover:border-[#f0c060]/40 group-hover:text-[#f0c060] transition-all flex-shrink-0 mt-1">
+                  <div
+                    className="w-10 h-10 rounded-full border flex items-center justify-center text-[var(--text-muted)] transition-all duration-300 flex-shrink-0 self-center group-hover:text-[var(--amber-bright)] group-hover:border-[var(--amber-glow)]"
+                    style={{ borderColor: "var(--smoke)" }}
+                  >
                     <ArrowUpRight size={15} />
                   </div>
                 </div>
@@ -486,17 +498,24 @@ function Portfolio() {
         </div>
 
         {/* Rest 4 — smaller grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {rest.map((p) => (
-            <Link key={p.slug} href={`/work/${p.slug}`} className="group rounded-xl overflow-hidden border border-[#1a1a1a] hover-lift cursor-pointer reveal block">
-              <div className="relative h-40 flex items-center justify-center overflow-hidden" style={{ background: p.gradient }}>
-                <Mockup lines={[70,40,85,30]} />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
+          {rest.map((p, i) => (
+            <Link
+              key={p.slug}
+              href={`/work/${p.slug}`}
+              className="group portfolio-card rounded-xl overflow-hidden border cursor-pointer reveal block"
+              style={{ transitionDelay: `${280 + i * 80}ms`, borderColor: "var(--carbon)" }}
+            >
+              <div className="portfolio-media h-44 md:h-48 flex items-center justify-center" style={{ background: p.gradient }}>
+                <div className="portfolio-media-inner">
+                  <Mockup lines={[70,40,85,30]} />
+                </div>
               </div>
-              <div className="bg-[#111] p-5">
-                <div className="font-mono text-[9px] text-[#f0c060] tracking-[0.12em] uppercase mb-1.5">{p.category}</div>
-                <h3 className="font-display font-semibold text-white tracking-[-0.02em] mb-1" style={{ fontSize: "1.0625rem" }}>{p.title}</h3>
-                <div className="text-[11px] text-[#4ade80] font-light">{p.result}</div>
+              <div className="p-6 md:p-7" style={{ backgroundColor: "var(--ink)" }}>
+                <div className="font-mono text-[9px] tracking-[0.12em] uppercase mb-2 text-[var(--amber-bright)]">{p.category}</div>
+                <h3 className="font-display font-semibold text-[var(--text-primary)] tracking-[-0.02em] mb-1.5" style={{ fontSize: "1.1rem" }}>{p.title}</h3>
+                <p className="text-[12px] text-[var(--text-muted)] leading-[1.6] mb-3">{p.industry}</p>
+                <div className="text-[11px] font-semibold tracking-[0.01em] text-[var(--green-live)]">{p.result}</div>
               </div>
             </Link>
           ))}
@@ -534,7 +553,7 @@ function About() {
                 {[["5+","Years"],["150+","Projects"],["12+","Countries"]].map(([val,lbl]) => (
                   <div key={lbl}>
                     <div className="font-display font-bold leading-none" style={{ fontSize: "1.75rem", color: "#f0c060" }}>{val}</div>
-                    <div className="font-mono text-[10px] text-[#666] tracking-wider uppercase mt-1">{lbl}</div>
+                    <div className="font-mono text-[10px] text-[#a3a3a3] tracking-wider uppercase mt-1">{lbl}</div>
                   </div>
                 ))}
               </div>
@@ -568,30 +587,34 @@ function About() {
 // ─── PROCESS (single — no duplication) ───────────────────────────────────────
 function Process() {
   return (
-    <section className="py-36 px-6 lg:px-12 bg-[#0d0d0d] border-t border-[#1a1a1a]">
+    <section className="py-24 md:py-32 lg:py-36 px-6 lg:px-12 border-t" style={{ backgroundColor: "var(--ink)", borderColor: "var(--carbon)" }}>
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20 reveal">
+        <div className="text-center mb-16 md:mb-20 reveal">
           <div className="section-label mb-5 justify-center">How We Work</div>
-          <h2 className="font-display font-bold text-white leading-[1.05] tracking-[-0.03em] max-w-2xl mx-auto" style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}>
-            From Idea to Live Product{" "}
-            <em className="not-italic" style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>in 16–18 Days.</em>
+          <h2 className="font-display font-bold text-[var(--text-primary)] leading-[1.05] tracking-[-0.03em] max-w-3xl mx-auto" style={{ fontSize: "clamp(2.2rem, 4.8vw, 4rem)" }}>
+            A Precise Build System
+            <span className="block mt-2 text-[var(--amber-light)]">from idea to launch in 16–18 days</span>
           </h2>
-          <p className="text-[#a3a3a3] max-w-md mx-auto mt-5 font-light leading-[1.85]" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>
-            No surprises. No delays. A clear, proven path from idea to launch.
+          <p className="text-[var(--text-secondary)] max-w-xl mx-auto mt-5 leading-[1.75]" style={{ fontSize: "clamp(0.95rem, 1.3vw, 1.08rem)" }}>
+            No surprises. No delays. A clear, founder-led system that keeps momentum from kickoff to go-live.
           </p>
+          <div className="inline-flex mt-7 items-center gap-2.5 px-4 py-2 rounded-full border" style={{ borderColor: "var(--amber-glow)", backgroundColor: "var(--amber-glow)" }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--amber-bright)]" />
+            <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--amber-bright)]">16–18 Day Delivery Window</span>
+          </div>
         </div>
 
         {/* Desktop */}
-        <div className="hidden lg:grid grid-cols-6 gap-0 relative reveal">
-          <div className="absolute top-5 left-[8%] right-[8%] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(240,192,96,0.2), transparent)" }} />
-          {PROCESS_STEPS.map((s) => (
-            <div key={s.num} className="flex flex-col items-center text-center px-3">
-              <div className="w-10 h-10 rounded-full border border-[#f0c060]/35 bg-[#0a0a0a] flex items-center justify-center mb-6 z-10 shadow-[0_0_20px_rgba(240,192,96,0.12)]">
-                <span className="font-mono text-[11px] text-[#f0c060]">{s.num}</span>
+        <div className="hidden lg:grid grid-cols-6 gap-4 relative process-timeline">
+          <div className="process-timeline-line" />
+          {PROCESS_STEPS.map((s, i) => (
+            <div key={s.num} className="process-step-card reveal flex flex-col items-center text-center px-3 py-3 rounded-2xl" style={{ transitionDelay: `${100 + i * 70}ms` }}>
+              <div className="w-11 h-11 rounded-full border flex items-center justify-center mb-6 z-10 process-step-orb" style={{ backgroundColor: "var(--obsidian)", borderColor: "var(--amber-glow)" }}>
+                <span className="font-mono text-[11px] text-[var(--amber-bright)]">{s.num}</span>
               </div>
-              <div className="font-mono text-[9px] text-[#f0c060]/60 tracking-[0.15em] uppercase mb-2">{s.day}</div>
-              <h3 className="font-display font-semibold text-white text-[1rem] mb-2 tracking-[-0.02em]">{s.title}</h3>
-              <p className="text-[12px] text-[#a3a3a3] leading-[1.75] font-light">{s.desc}</p>
+              <div className="font-mono text-[9px] text-[var(--amber-bright)] tracking-[0.15em] uppercase mb-2 opacity-75">{s.day}</div>
+              <h3 className="font-display font-semibold text-[var(--text-primary)] text-[1.03rem] mb-2 tracking-[-0.02em]">{s.title}</h3>
+              <p className="text-[12px] text-[var(--text-secondary)] leading-[1.7]">{s.desc}</p>
             </div>
           ))}
         </div>
@@ -599,17 +622,17 @@ function Process() {
         {/* Mobile */}
         <div className="lg:hidden flex flex-col">
           {PROCESS_STEPS.map((s, i) => (
-            <div key={s.num} className="flex gap-5 reveal">
+            <div key={s.num} className="flex gap-5 reveal process-mobile-row" style={{ transitionDelay: `${80 + i * 65}ms` }}>
               <div className="flex flex-col items-center flex-shrink-0">
-                <div className="w-10 h-10 rounded-full border border-[#f0c060]/35 bg-[#0a0a0a] flex items-center justify-center z-10">
-                  <span className="font-mono text-[11px] text-[#f0c060]">{s.num}</span>
+                <div className="w-10 h-10 rounded-full border flex items-center justify-center z-10" style={{ backgroundColor: "var(--obsidian)", borderColor: "var(--amber-glow)" }}>
+                  <span className="font-mono text-[11px] text-[var(--amber-bright)]">{s.num}</span>
                 </div>
-                {i < PROCESS_STEPS.length - 1 && <div className="w-px flex-1 my-2 bg-gradient-to-b from-[#f0c060]/20 to-transparent" />}
+                {i < PROCESS_STEPS.length - 1 && <div className="w-px flex-1 my-2 process-mobile-connector" />}
               </div>
-              <div className="pb-10 pt-1.5">
-                <div className="font-mono text-[9px] text-[#f0c060]/60 tracking-[0.15em] uppercase mb-1">{s.day}</div>
-                <h3 className="font-display font-semibold text-white mb-2" style={{ fontSize: "1.125rem" }}>{s.title}</h3>
-                <p className="text-[13px] text-[#a3a3a3] leading-[1.8] font-light">{s.desc}</p>
+              <div className="pb-9 pt-1.5">
+                <div className="font-mono text-[9px] text-[var(--amber-bright)] tracking-[0.15em] uppercase mb-1 opacity-75">{s.day}</div>
+                <h3 className="font-display font-semibold text-[var(--text-primary)] mb-2" style={{ fontSize: "1.125rem" }}>{s.title}</h3>
+                <p className="text-[13px] text-[var(--text-secondary)] leading-[1.75]">{s.desc}</p>
               </div>
             </div>
           ))}
