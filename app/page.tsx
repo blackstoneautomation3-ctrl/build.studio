@@ -202,51 +202,36 @@ function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070')` }}
       >
-        {/* Charcoal overlay for premium contrast without crushing image */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,10,10,0.78) 0%, rgba(17,17,17,0.82) 60%, rgba(10,10,10,0.88) 100%)" }} />
+        {/* Lighter charcoal overlay keeps image more visible */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,10,10,0.46) 0%, rgba(17,17,17,0.52) 60%, rgba(10,10,10,0.6) 100%)" }} />
+        {/* Gentle center vignette for text readability */}
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, rgba(10,10,10,0.16) 0%, rgba(10,10,10,0.28) 48%, rgba(10,10,10,0.42) 100%)" }} />
         {/* Amber tint at bottom */}
         <div className="absolute bottom-0 left-0 right-0 h-1/3"
           style={{ background: "linear-gradient(to top, rgba(240,192,96,0.08), transparent)" }} />
       </div>
 
-      {/* Animated BUILD.STUDIO watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-        <h1
-          className="font-display font-bold tracking-[0.03em] text-[var(--text-primary)] animate-hero-bg select-none"
-          style={{ fontSize: "clamp(10vw, 14vw, 18vw)", opacity: 0.012 }}
+      {/* Subtle top-left brand mark */}
+      <div className="absolute top-7 left-6 md:top-10 md:left-10 z-20 pointer-events-none">
+        <span
+          className="font-display font-bold uppercase tracking-[0.06em] text-[var(--text-primary)]"
+          style={{ fontSize: "clamp(0.95rem, 1.6vw, 1.2rem)", opacity: 0.05 }}
         >
           BUILD.STUDIO
-        </h1>
+        </span>
       </div>
 
       {/* Main content */}
-      <div className="relative z-20 max-w-4xl mx-auto px-6 text-center w-full">
-
-        {/* Badge */}
-        <div
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/[0.05] backdrop-blur-sm mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-        >
-          <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-          <span className="font-mono text-[11px] text-[var(--text-secondary)] tracking-[0.2em] uppercase font-medium">Currently Accepting Projects</span>
-        </div>
+      <div className="relative z-20 max-w-4xl mx-auto px-6 text-center w-full -mt-8 md:-mt-12">
 
         {/* Headline */}
         <div className={`space-y-4 mb-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h1
-            className="font-display font-extrabold text-[var(--text-primary)] uppercase tracking-[0.08em] hero-brand-reveal"
-            style={{
-              fontSize: "clamp(4.5rem, 9vw, 9rem)",
-              lineHeight: 0.92,
-            }}
-          >
-            BUILD.STUDIO
-          </h1>
-          <p className={`font-display font-bold uppercase tracking-[0.05em] text-[var(--text-secondary)] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-            style={{ fontSize: "clamp(1.2rem, 2vw, 1.95rem)", lineHeight: 1.05 }}>
+          <p className={`font-display font-extrabold uppercase tracking-[0.05em] text-[var(--text-secondary)] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.45rem, 2.8vw, 2.55rem)", lineHeight: 1.03 }}>
             DIGITAL PRODUCTS.
           </p>
-          <p className={`font-display font-bold uppercase tracking-[0.05em] text-[var(--text-primary)] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-            style={{ fontSize: "clamp(1.2rem, 2vw, 1.95rem)", lineHeight: 1.05 }}>
+          <p className={`font-display font-extrabold uppercase tracking-[0.05em] text-[var(--text-primary)] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.45rem, 2.8vw, 2.55rem)", lineHeight: 1.03 }}>
             BUILT DIFFERENTLY.
           </p>
 
@@ -290,7 +275,7 @@ function Hero() {
 
       {/* Bottom trust bar */}
       <div
-        className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}
+        className={`absolute bottom-14 left-1/2 z-20 -translate-x-1/2 transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}
       >
         <div className="flex items-center gap-6 lg:gap-10 font-mono text-[10px] text-[#a3a3a3] tracking-[0.15em] uppercase whitespace-nowrap">
           <span>16–18 Day Delivery</span>
@@ -336,27 +321,27 @@ function StatsBar() {
 // ─── TRUSTED BY ──────────────────────────────────────────────────────────────
 function TrustedBy() {
   return (
-    <section className="py-20 px-6 lg:px-12 border-b border-[#1a1a1a] bg-[#0a0a0a]">
+    <section className="py-24 px-6 lg:px-12 border-b border-[#1a1a1a] bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10 reveal">
-          <p className="font-mono text-[11px] text-[#a3a3a3] tracking-[0.25em] uppercase font-medium">
+        <div className="text-center mb-12 reveal">
+          <p className="font-mono text-[12px] md:text-[13px] text-[var(--text-secondary)] tracking-[0.22em] uppercase font-semibold">
             Trusted by teams at world-class companies
           </p>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16 reveal">
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 lg:gap-x-16 lg:gap-y-10 reveal">
           {TRUSTED_LOGOS.map((logo) => (
             <div
               key={logo.name}
-              className="flex items-center gap-2.5 opacity-30 hover:opacity-60 transition-opacity duration-300 cursor-default group"
+              className="flex items-center gap-3 opacity-85 hover:opacity-100 transition-opacity duration-300 cursor-default group"
               title={logo.name}
             >
               <div
-                className="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-white text-[11px]"
-                style={{ background: logo.color, filter: "grayscale(1) brightness(1.5)" }}
+                className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white text-[12px] shadow-sm border border-white/10"
+                style={{ background: logo.color, filter: "grayscale(0.35) brightness(1.15)" }}
               >
                 {logo.letter}
               </div>
-              <span className="font-body font-semibold text-[#888] text-[15px] tracking-tight" style={{ filter: "grayscale(1)" }}>
+              <span className="font-body font-semibold text-[var(--text-secondary)] text-base md:text-[17px] tracking-tight group-hover:text-[var(--text-primary)] transition-colors">
                 {logo.name}
               </span>
             </div>

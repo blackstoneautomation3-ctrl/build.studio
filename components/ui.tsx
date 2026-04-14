@@ -87,7 +87,7 @@ export function Navbar() {
         <div className="hidden lg:flex items-center gap-3">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#222] bg-[#111]">
             <span className="w-1.5 h-1.5 bg-[#4ade80] rounded-full animate-pulse" />
-            <span className="font-mono text-[10px] text-[#4ade80] tracking-[0.15em] uppercase">Available</span>
+            <span className="font-mono text-[10px] text-[#4ade80] tracking-[0.15em] uppercase whitespace-nowrap">Accepting Projects</span>
           </div>
           <Link
             href="/contact"
