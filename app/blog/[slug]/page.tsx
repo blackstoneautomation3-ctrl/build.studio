@@ -199,16 +199,8 @@ export default function BlogPost({ params }: Props) {
             ))}
           </div>
 
-          {/* Author + CTA */}
+          {/* CTA */}
           <div className="mt-20 pt-12 border-t border-[#1a1a1a]">
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-12 h-12 rounded-xl bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center font-display text-xl font-bold text-[#f0c060]">A</div>
-              <div>
-                <div className="text-[14px] font-semibold text-white">Ayo</div>
-                <div className="text-[12px] text-[#a3a3a3] font-light">Founder, BUILD.STUDIO</div>
-              </div>
-            </div>
-
             <div className="bg-[#111] border border-[#f0c060]/15 rounded-2xl p-8 text-center">
               <h3 className="font-display font-bold text-white tracking-[-0.03em] mb-3" style={{ fontSize: "clamp(1.375rem, 2.5vw, 1.875rem)" }}>
                 Ready to build your digital product?
