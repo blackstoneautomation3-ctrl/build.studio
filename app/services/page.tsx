@@ -129,13 +129,11 @@ export default function Services() {
                 </div>
                 <div className="flex gap-8 mb-8">
                   <div>
-                    <div className="font-mono text-[10px] text-ash tracking-[1.5px] uppercase mb-1">Price</div>
-                    <div className="text-[15px] font-medium text-snow">{s.price}</div>
-                  </div>
-                  <div>
                     <div className="font-mono text-[10px] text-ash tracking-[1.5px] uppercase mb-1">Timeline</div>
                     <div className="text-[15px] font-medium text-snow">{s.timeline}</div>
                   </div>
+                </div>
+                </div>
                 </div>
                 <Link href="/contact" className="btn-amber inline-flex">
                   Start This Project <ArrowRight size={14} />
