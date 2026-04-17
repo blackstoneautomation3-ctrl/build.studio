@@ -190,22 +190,24 @@ function Hero() {
       <div className="relative z-20 max-w-4xl mx-auto px-6 text-center w-full -mt-8 md:-mt-12">
 
         {/* Headline */}
-        <div className={`space-y-4 mb-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className={`font-display font-extrabold uppercase tracking-[0.05em] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-            style={{ fontSize: "clamp(1.75rem, 3.2vw, 3rem)", lineHeight: 1.03, color: "#f0c060" }}>
+        <div className={`space-y-2 md:space-y-4 mb-8 md:mb-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className={`font-display font-extrabold uppercase tracking-[0.02em] md:tracking-[0.05em] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1.1, color: "#f0c060" }}>
             DIGITAL PRODUCTS.
           </p>
-          <p className={`font-display font-extrabold uppercase tracking-[0.05em] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-            style={{ fontSize: "clamp(1.75rem, 3.2vw, 3rem)", lineHeight: 1.03, color: "#f0c060" }}>
+          <p className={`font-display font-extrabold uppercase tracking-[0.02em] md:tracking-[0.05em] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1.1, color: "#f0c060" }}>
             BUILT DIFFERENTLY.
           </p>
 
           <p
-            className="max-w-2xl mx-auto text-[var(--text-secondary)] font-normal leading-[1.75]"
-            style={{ fontSize: "clamp(1.15rem, 1.7vw, 1.4rem)" }}
+            className="max-w-xs sm:max-w-md md:max-w-2xl mx-auto text-[var(--text-secondary)] font-normal leading-[1.6] md:leading-[1.75]"
+            style={{ fontSize: "clamp(0.9rem, 2vw, 1.4rem)" }}
           >
             We design, develop, and automate world-class digital products for startups,
-            brands, and enterprises — wherever you are in the world.
+            <br className="hidden sm:block" />
+            brands, and enterprises <br className="hidden sm:block" />
+            wherever you are in the world.
           </p>
         </div>
 
@@ -242,11 +244,11 @@ function Hero() {
       <div
         className={`absolute bottom-14 left-1/2 z-20 -translate-x-1/2 transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}
       >
-        <div className="flex items-center gap-6 lg:gap-10 font-mono text-[10px] text-[#a3a3a3] tracking-[0.15em] uppercase whitespace-nowrap">
-          <span>16–18 Day Delivery</span>
-          <span className="text-[#f0c060]/30">✦</span>
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 lg:gap-10 font-mono text-[9px] sm:text-[10px] text-[#a3a3a3] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-center sm:text-left">
+          <span>16-18 Day Delivery</span>
+          <span className="text-[#f0c060]/30 hidden sm:inline">-</span>
           <span>Worldwide</span>
-          <span className="text-[#f0c060]/30">✦</span>
+          <span className="text-[#f0c060]/30 hidden sm:inline">-</span>
           <span>Transparent Pricing</span>
         </div>
       </div>
