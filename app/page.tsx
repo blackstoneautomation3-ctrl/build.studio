@@ -191,12 +191,12 @@ function Hero() {
 
         {/* Headline */}
         <div className={`space-y-4 mb-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className={`font-display font-extrabold uppercase tracking-[0.05em] text-[var(--text-secondary)] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-            style={{ fontSize: "clamp(1.75rem, 3.2vw, 3rem)", lineHeight: 1.03 }}>
+          <p className={`font-display font-extrabold uppercase tracking-[0.05em] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.75rem, 3.2vw, 3rem)", lineHeight: 1.03, color: "#f0c060" }}>
             DIGITAL PRODUCTS.
           </p>
-          <p className={`font-display font-extrabold uppercase tracking-[0.05em] text-[var(--text-primary)] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-            style={{ fontSize: "clamp(1.75rem, 3.2vw, 3rem)", lineHeight: 1.03 }}>
+          <p className={`font-display font-extrabold uppercase tracking-[0.05em] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.75rem, 3.2vw, 3rem)", lineHeight: 1.03, color: "#f0c060" }}>
             BUILT DIFFERENTLY.
           </p>
 
