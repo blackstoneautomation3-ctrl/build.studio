@@ -164,7 +164,7 @@ function Hero() {
 
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-contain bg-center bg-no-repeat md:bg-cover md:bg-center"
         style={{ backgroundImage: `url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070')` }}
       >
         {/* Lighter charcoal overlay keeps image more visible */}
