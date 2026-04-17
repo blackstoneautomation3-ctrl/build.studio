@@ -27,21 +27,18 @@ const SERVICES = [
     title: "Web & App Development",
     desc: "We build fast, scalable, and beautiful web and mobile applications that your users will love and your business will grow on.",
     items: ["Business Websites","Web Applications","Mobile Apps (iOS & Android)","SaaS Products","E-commerce Stores"],
-    price: "From $500",
   },
   {
     num: "02", icon: <Star size={20} />,
     title: "UX/UI Design",
     desc: "Great products don't just work — they feel effortless. We craft interfaces that are intuitive, visually stunning, and built to convert.",
     items: ["Product Design","Website UI Design","Mobile App Design","Design Systems","Prototyping"],
-    price: "From $300",
   },
   {
     num: "03", icon: <Zap size={20} />,
     title: "AI Automation & Tools",
     desc: "We integrate AI and automation into your workflows, products, and customer experiences — saving time and unlocking revenue.",
     items: ["Custom AI Chatbots","Workflow Automation","OpenAI API Integration","Business Process Automation","AI-Powered Features"],
-    price: "From $400",
   },
 ];
 
@@ -146,45 +143,13 @@ const STATS: StatDef[] = [
 ];
 
 function StatCard({ stat }: { stat: StatDef }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setStarted(true); obs.disconnect(); } },
-      { threshold: 0.4 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started) return;
-    let frame = 0;
-    const FRAMES = 72;
-    const timer = setInterval(() => {
-      frame++;
-      const progress = frame / FRAMES;
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.round(eased * stat.target));
-      if (frame >= FRAMES) { setCount(stat.target); setDone(true); clearInterval(timer); }
-    }, 1800 / FRAMES);
-    return () => clearInterval(timer);
-  }, [started, stat.target]);
-
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center py-12 px-6 border-r border-[#1a1a1a] last:border-r-0 hover:bg-white/[0.015] transition-colors group">
+    <div className="flex flex-col items-center justify-center py-12 px-6 border-r border-[#1a1a1a] last:border-r-0 hover:bg-white/[0.015] transition-colors group">
       <div className="font-display font-bold text-[#f4f4f4] leading-none tracking-[-0.04em] relative" style={{ fontSize: "clamp(2.25rem, 4vw, 3.5rem)" }}>
-        {stat.prefix}{count}<span style={{ color: "#f0c060" }}>{stat.suffix}</span>
-        {done && (
-          <span className="absolute -bottom-2 left-0 h-px bg-gradient-to-r from-[#f0c060] to-transparent" style={{ animation: "count-underline 0.6s ease forwards", width: "100%" }} />
-        )}
+        {stat.prefix}{stat.target}<span style={{ color: "#f0c060" }}>{stat.suffix}</span>
+        <span className="absolute -bottom-2 left-0 h-px bg-gradient-to-r from-[#f0c060] to-transparent" style={{ width: "100%" }} />
       </div>
-      <div className="font-mono text-[11px] text-[#c8c8c8] tracking-[0.15em] uppercase mt-4">{stat.label}</div>
+      <div className="font-mono text-[11px] text-[#e5e5e5] tracking-[0.15em] uppercase mt-4">{stat.label}</div>
     </div>
   );
 }
@@ -227,17 +192,17 @@ function Hero() {
         {/* Headline */}
         <div className={`space-y-4 mb-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className={`font-display font-extrabold uppercase tracking-[0.05em] text-[var(--text-secondary)] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-            style={{ fontSize: "clamp(1.45rem, 2.8vw, 2.55rem)", lineHeight: 1.03 }}>
+            style={{ fontSize: "clamp(1.75rem, 3.2vw, 3rem)", lineHeight: 1.03 }}>
             DIGITAL PRODUCTS.
           </p>
           <p className={`font-display font-extrabold uppercase tracking-[0.05em] text-[var(--text-primary)] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-            style={{ fontSize: "clamp(1.45rem, 2.8vw, 2.55rem)", lineHeight: 1.03 }}>
+            style={{ fontSize: "clamp(1.75rem, 3.2vw, 3rem)", lineHeight: 1.03 }}>
             BUILT DIFFERENTLY.
           </p>
 
           <p
             className="max-w-2xl mx-auto text-[var(--text-secondary)] font-normal leading-[1.75]"
-            style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)" }}
+            style={{ fontSize: "clamp(1.15rem, 1.7vw, 1.4rem)" }}
           >
             We design, develop, and automate world-class digital products for startups,
             brands, and enterprises — wherever you are in the world.
@@ -371,29 +336,23 @@ function Services() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-[1px] bg-[#1a1a1a] rounded-2xl overflow-hidden border border-[#1a1a1a]">
+        <div className="grid lg:grid-cols-3 gap-4 md:gap-5">
           {SERVICES.map((s) => (
-            <div key={s.num} className="group bg-[#0a0a0a] hover:bg-[#0f0f0f] p-10 flex flex-col gap-6 transition-colors duration-300 reveal">
+            <div key={s.num} className="group bg-[#0a0a0a] hover:bg-[#0f0f0f] p-6 lg:p-10 flex flex-col gap-4 lg:gap-6 transition-colors duration-300 reveal rounded-xl border border-[#1a1a1a]">
               <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em]">{s.num}</div>
-              <div className="w-11 h-11 rounded-xl bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center text-[#f0c060] group-hover:scale-105 transition-transform">
+              <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center text-[#f0c060] group-hover:scale-105 transition-transform">
                 {s.icon}
               </div>
-              <h3 className="font-display font-semibold text-white tracking-[-0.02em]" style={{ fontSize: "1.375rem" }}>{s.title}</h3>
-              <p className="text-[14px] text-[#a3a3a3] leading-[1.85] font-light flex-1">{s.desc}</p>
-              <ul className="flex flex-col gap-2.5 mt-1">
+              <h3 className="font-display font-semibold text-white tracking-[-0.02em] text-lg lg:text-xl" style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)" }}>{s.title}</h3>
+              <p className="text-[14px] lg:text-[15px] text-[#e5e5e5] leading-[1.85] font-medium flex-1">{s.desc}</p>
+              <ul className="flex flex-col gap-2 lg:gap-2.5 mt-1">
                 {s.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-[13px] text-[#c8c8c8] font-light">
+                  <li key={item} className="flex items-center gap-2 lg:gap-2.5 text-[13px] lg:text-[14px] text-[#d4d4d4] font-medium">
                     <CheckCircle2 size={13} className="flex-shrink-0" style={{ color: "rgba(240,192,96,0.65)" }} />
-                    {item}
+                    <span className="text-sm lg:text-base">{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="flex items-center justify-between pt-4 border-t border-[#1a1a1a]">
-                <span className="font-mono text-[12px] text-[#f0c060]">{s.price}</span>
-                <div className="w-8 h-8 rounded-full border border-[#222] flex items-center justify-center text-[#a3a3a3] group-hover:border-[#f0c060]/30 group-hover:text-[#f0c060] transition-all">
-                  <ArrowUpRight size={14} />
-                </div>
-              </div>
             </div>
           ))}
         </div>
@@ -516,36 +475,6 @@ function About() {
     <section className="py-36 px-6 lg:px-12 bg-[#0a0a0a] border-t border-[#1a1a1a]">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <div className="reveal">
-          <div className="relative">
-            <div className="glow-amber w-80 h-80 -top-16 -left-16 opacity-25" />
-            <div className="relative rounded-3xl bg-[#111] border border-[#1a1a1a] p-10 overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 opacity-[0.07]"
-                style={{ background: "radial-gradient(circle at top right, #f0c060, transparent 70%)" }} />
-              <div className="w-20 h-20 rounded-2xl bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center mb-8">
-                <span className="font-display text-3xl font-bold text-[#f0c060]">A</span>
-              </div>
-              <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em] uppercase mb-3">Founder &amp; Creative Director</div>
-              <h3 className="font-display font-bold text-white tracking-[-0.03em] mb-4" style={{ fontSize: "2.5rem" }}>Ayo</h3>
-              <p className="text-[14px] text-[#a3a3a3] leading-[1.9] font-light mb-7">
-                5+ years building web products, AI automation tools, and digital experiences at the highest level. Every project led with a bias for quality.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-8">
-                {["Next.js","React Native","AI Integration","Product Strategy","UX Design"].map((skill) => (
-                  <span key={skill} className="px-3 py-1 rounded-full border border-[#222] bg-[#161616] font-mono text-[11px] text-[#a3a3a3]">{skill}</span>
-                ))}
-              </div>
-              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-[#1a1a1a]">
-                {[["5+","Years"],["150+","Projects"],["12+","Countries"]].map(([val,lbl]) => (
-                  <div key={lbl}>
-                    <div className="font-display font-bold leading-none" style={{ fontSize: "1.75rem", color: "#f0c060" }}>{val}</div>
-                    <div className="font-mono text-[10px] text-[#a3a3a3] tracking-wider uppercase mt-1">{lbl}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="reveal">
           <div className="section-label mb-6">About BUILD.STUDIO</div>
           <h2 className="font-display font-bold text-white leading-[1.08] tracking-[-0.03em] mb-8" style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
             Built to Be{" "}
@@ -639,19 +568,19 @@ function Testimonials() {
             <em className="not-italic" style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Brands Worldwide.</em>
           </h2>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {TESTIMONIALS.map((t) => (
-            <div key={t.initials} className="glass rounded-2xl p-8 flex flex-col gap-5 hover-lift reveal border border-[#1a1a1a]">
+            <div key={t.initials} className="glass rounded-2xl p-6 lg:p-8 flex flex-col gap-4 lg:gap-5 hover-lift reveal border border-[#1a1a1a]">
               <div className="flex gap-0.5">
                 {Array.from({ length: t.stars }).map((_, i) => <span key={i} style={{ color: "#f0c060", fontSize: "13px" }}>★</span>)}
               </div>
-              <div className="font-display text-[3.5rem] text-[#f0c060]/20 leading-none -mt-2">&ldquo;</div>
-              <p className="font-display font-medium italic text-[#c8c8c8] leading-[1.65] tracking-[-0.01em] -mt-6" style={{ fontSize: "1.0625rem" }}>{t.quote}</p>
-              <div className="flex items-center gap-3 mt-auto pt-5 border-t border-[#1a1a1a]">
-                <div className="w-9 h-9 rounded-full bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center font-body font-semibold text-[12px] text-[#f0c060] flex-shrink-0">{t.initials}</div>
+              <div className="font-display text-[2.5rem] lg:text-[3.5rem] text-[#f0c060]/20 leading-none -mt-2">&ldquo;</div>
+              <p className="font-display font-medium italic text-[#d4d4d4] leading-[1.65] tracking-[-0.01em] -mt-6" style={{ fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)" }}>{t.quote}</p>
+              <div className="flex items-center gap-3 mt-auto pt-4 lg:pt-5 border-t border-[#1a1a1a]">
+                <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center font-body font-semibold text-[11px] lg:text-[12px] text-[#f0c060] flex-shrink-0">{t.initials}</div>
                 <div>
-                  <div className="text-[13px] font-medium text-white">{t.name}</div>
-                  <div className="text-[11px] text-[#a3a3a3]">{t.role}</div>
+                  <div className="text-[12px] lg:text-[13px] font-medium text-white">{t.name}</div>
+                  <div className="text-[10px] lg:text-[11px] text-[#a3a3a3]">{t.role}</div>
                 </div>
               </div>
             </div>

@@ -23,6 +23,7 @@ export default function Contact() {
   const [form, setForm] = useState<FormState>({ name: "", email: "", company: "", service: "", budget: "", timeline: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
+  const [showContactOptions, setShowContactOptions] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -34,20 +35,22 @@ export default function Contact() {
       return;
     }
     setError("");
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong.");
-      setStatus("success");
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Failed to send. Please try WhatsApp instead.");
-      setStatus("error");
-    }
+    setShowContactOptions(true);
+  };
+
+  const createWhatsAppMessage = () => {
+    const message = encodeURIComponent(
+      `Hi Build.Studio!\n\nName: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nService: ${form.service}\nBudget: ${form.budget}\nTimeline: ${form.timeline}\n\nProject Details:\n${form.message}`
+    );
+    return `https://wa.me/2348166494104?text=${message}`;
+  };
+
+  const createEmailMessage = () => {
+    const subject = encodeURIComponent(`Project Inquiry: ${form.service || 'General'}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nService: ${form.service}\nBudget: ${form.budget}\nTimeline: ${form.timeline}\n\nProject Details:\n${form.message}`
+    );
+    return `mailto:hello@build.studio?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -87,6 +90,61 @@ export default function Contact() {
                   <button className="btn-amber mt-4" onClick={() => { setStatus("idle"); setForm({ name:"", email:"", company:"", service:"", budget:"", timeline:"", message:"" }); }}>
                     Send Another <ArrowRight size={14} />
                   </button>
+                </div>
+              ) : showContactOptions ? (
+                <div className="py-8">
+                  <h3 className="font-display text-[20px] font-medium text-snow mb-6 text-center">Choose How to Send Your Message</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <a
+                      href={createWhatsAppMessage()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-[#25D366] hover:bg-[#128C7E] text-white rounded-xl p-6 flex flex-col items-center gap-3 transition-all hover:scale-105 cursor-pointer border border-[#25D366]/20"
+                    >
+                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                        <span className="text-2xl">💬</span>
+                      </div>
+                      <div className="text-center">
+                        <h4 className="font-semibold text-white mb-1">WhatsApp</h4>
+                        <p className="text-xs text-white/80">Fastest response</p>
+                      </div>
+                    </a>
+                    
+                    <a
+                      href={createEmailMessage()}
+                      className="bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-white/10 hover:border-[#f0c060]/30 text-white rounded-xl p-6 flex flex-col items-center gap-3 transition-all hover:scale-105 cursor-pointer"
+                    >
+                      <div className="w-12 h-12 bg-[#f0c060]/20 rounded-full flex items-center justify-center">
+                        <span className="text-2xl">✉️</span>
+                      </div>
+                      <div className="text-center">
+                        <h4 className="font-semibold text-white mb-1">Email</h4>
+                        <p className="text-xs text-[#a3a3a3]">Formal inquiry</p>
+                      </div>
+                    </a>
+                    
+                    <a
+                      href="tel:+2348166494104"
+                      className="bg-[#0a0a0a] hover:bg-[#1a1a1a] border border-white/10 hover:border-[#f0c060]/30 text-white rounded-xl p-6 flex flex-col items-center gap-3 transition-all hover:scale-105 cursor-pointer"
+                    >
+                      <div className="w-12 h-12 bg-[#f0c060]/20 rounded-full flex items-center justify-center">
+                        <span className="text-2xl">📞</span>
+                      </div>
+                      <div className="text-center">
+                        <h4 className="font-semibold text-white mb-1">Phone Call</h4>
+                        <p className="text-xs text-[#a3a3a3]">Direct conversation</p>
+                      </div>
+                    </a>
+                  </div>
+                  
+                  <div className="mt-6 text-center">
+                    <button 
+                      onClick={() => setShowContactOptions(false)}
+                      className="text-[#a3a3a3] hover:text-[#f0c060] transition-colors text-sm"
+                    >
+                      ← Back to form
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <>
@@ -154,7 +212,7 @@ export default function Contact() {
                     disabled={status === "loading"}
                     className="btn-amber w-full justify-center mt-6 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {status === "loading" ? "Sending..." : "Send Message →"}
+                    {status === "loading" ? "Preparing..." : "Send Message →"}
                   </button>
                 </>
               )}

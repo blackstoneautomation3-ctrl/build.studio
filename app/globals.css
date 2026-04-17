@@ -16,14 +16,14 @@
   --iron:     #222222;
   --smoke:    #2a2a2a;
 
-  /* Text — WCAG AA/AAA compliant */
-  --snow:     #f4f4f4;
-  --fog:      #c8c8c8;
-  --ash:      #a3a3a3;
-  --muted:    #666666;
-  --text-primary: #f4f4f4;
-  --text-secondary: #d4d4d4;
-  --text-muted: #a3a3a3;
+  /* Text — WCAG AA/AAA compliant - Brighter for better visibility */
+  --snow:     #fafafa;
+  --fog:      #e5e5e5;
+  --ash:      #d4d4d4;
+  --muted:    #a3a3a3;
+  --text-primary: #fafafa;
+  --text-secondary: #e5e5e5;
+  --text-muted: #d4d4d4;
 
   /* Amber Gold — primary accent */
   --amber:       #e8b86d;
