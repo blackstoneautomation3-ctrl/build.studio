@@ -6,17 +6,10 @@ import { Navbar, Footer, FinalCTA, PageHero, useReveal } from "@/components/ui";
 
 const TEAM = [
   {
-    icon: "🎯",
-    name: "Ayo",
-    role: "Creative Director & Lead Developer",
-    desc: "Founder and visionary behind Build.Studio. 5+ years in web development, AI automation, and product design. Leads every project with a bias for quality.",
-    skills: ["Next.js", "React Native", "AI Integration", "Product Strategy"],
-  },
-  {
     icon: "✦",
     name: "Design Team",
     role: "UX/UI Specialists",
-    desc: "Turning complex problems into clean, elegant interfaces. Every screen crafted with the user's experience and the client's goals at the center.",
+    desc: "Turning complex problems into clean, elegant interfaces. Every screen crafted with the user's experience and client's goals at the center.",
     skills: ["Figma", "Prototyping", "Design Systems", "User Research"],
   },
   {
