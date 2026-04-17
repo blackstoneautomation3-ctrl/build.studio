@@ -340,21 +340,56 @@ function Services() {
 
         <div className="grid lg:grid-cols-3 gap-4 md:gap-5">
           {SERVICES.map((s) => (
-            <div key={s.num} className="group bg-[#0a0a0a] hover:bg-[#0f0f0f] p-6 lg:p-10 flex flex-col gap-4 lg:gap-6 transition-colors duration-300 reveal rounded-xl border border-[#1a1a1a]">
-              <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em]">{s.num}</div>
-              <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center text-[#f0c060] group-hover:scale-105 transition-transform">
-                {s.icon}
+            <div key={s.num} className="group bg-[#111111] hover:bg-[#151515] p-6 sm:p-8 lg:p-10 flex flex-col gap-6 transition-all duration-300 reveal rounded-2xl border border-[#222222] hover:border-[#f0c060]/30 shadow-lg hover:shadow-xl">
+              {/* Header */}
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em] font-bold">{s.num}</div>
+                  <div className="w-12 h-12 rounded-xl bg-[#f0c060]/15 border border-[#f0c060]/30 flex items-center justify-center text-[#f0c060] group-hover:scale-105 transition-transform">
+                    {s.icon}
+                  </div>
+                </div>
+                <h3 className="font-display font-bold text-[#fafafa] tracking-[-0.02em]" style={{ fontSize: "clamp(1.2rem, 3vw, 1.5rem)" }}>{s.title}</h3>
+                <p className="text-[#e8e8e8] leading-[1.8] font-medium" style={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}>{s.desc}</p>
               </div>
-              <h3 className="font-display font-semibold text-white tracking-[-0.02em] text-lg lg:text-xl" style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.375rem)" }}>{s.title}</h3>
-              <p className="text-[14px] lg:text-[15px] text-[#e5e5e5] leading-[1.85] font-medium flex-1">{s.desc}</p>
-              <ul className="flex flex-col gap-2 lg:gap-2.5 mt-1">
-                {s.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 lg:gap-2.5 text-[13px] lg:text-[14px] text-[#d4d4d4] font-medium">
-                    <CheckCircle2 size={13} className="flex-shrink-0" style={{ color: "rgba(240,192,96,0.65)" }} />
-                    <span className="text-sm lg:text-base">{item}</span>
-                  </li>
-                ))}
-              </ul>
+
+              {/* Tech Stack */}
+              <div className="space-y-3">
+                <h4 className="font-mono text-[10px] text-[#f0c060] tracking-[0.15em] uppercase font-bold">Tech Stack</h4>
+                <div className="flex flex-wrap gap-2">
+                  {s.items.slice(0, 3).map((item) => (
+                    <span key={item} className="px-3 py-1 rounded-full bg-[#1a1a1a] border border-[#333333] text-[#d4d4d4] text-[11px] font-medium">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Timeline */}
+              <div className="space-y-2">
+                <h4 className="font-mono text-[10px] text-[#f0c060] tracking-[0.15em] uppercase font-bold">Timeline</h4>
+                <p className="text-[#e8e8e8] text-sm">2-4 weeks</p>
+              </div>
+
+              {/* What's Included */}
+              <div className="space-y-3">
+                <h4 className="font-mono text-[10px] text-[#f0c060] tracking-[0.15em] uppercase font-bold">What's Included</h4>
+                <ul className="flex flex-col gap-2">
+                  {s.items.map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-[#e8e8e8] text-sm">
+                      <CheckCircle2 size={14} className="flex-shrink-0 text-[#f0c060]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* CTA Button */}
+              <div className="mt-auto pt-4">
+                <Link href="/contact" className="w-full bg-[#f0c060] hover:bg-[#e8b86d] text-[#0a0a0a] font-semibold py-3 px-6 rounded-xl transition-all duration-300 text-center block hover:scale-105">
+                  Start This Project
+                </Link>
+              </div>
             </div>
           ))}
         </div>
