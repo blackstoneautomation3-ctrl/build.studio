@@ -442,30 +442,6 @@ function Portfolio() {
             </Link>
           ))}
         </div>
-
-        {/* Rest 4 — smaller grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
-          {rest.map((p, i) => (
-            <Link
-              key={p.slug}
-              href={`/work/${p.slug}`}
-              className="group portfolio-card rounded-xl overflow-hidden border cursor-pointer reveal block"
-              style={{ transitionDelay: `${280 + i * 80}ms`, borderColor: "var(--carbon)" }}
-            >
-              <div className="portfolio-media h-44 md:h-48 flex items-center justify-center" style={{ background: p.gradient }}>
-                <div className="portfolio-media-inner">
-                  <Mockup lines={[70,40,85,30]} />
-                </div>
-              </div>
-              <div className="p-6 md:p-7" style={{ backgroundColor: "var(--ink)" }}>
-                <div className="font-mono text-[9px] tracking-[0.12em] uppercase mb-2 text-[var(--amber-bright)]">{p.category}</div>
-                <h3 className="font-display font-semibold text-[var(--text-primary)] tracking-[-0.02em] mb-1.5" style={{ fontSize: "1.1rem" }}>{p.title}</h3>
-                <p className="text-[12px] text-[var(--text-muted)] leading-[1.6] mb-3">{p.industry}</p>
-                <div className="text-[11px] font-semibold tracking-[0.01em] text-[var(--green-live)]">{p.result}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
       </div>
     </section>
   );
