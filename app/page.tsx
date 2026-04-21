@@ -358,7 +358,7 @@ function Services() {
                 <h4 className="font-mono text-[12px] text-[#f0c060] tracking-[0.15em] uppercase font-bold">Tech Stack</h4>
                 <div className="flex flex-wrap gap-2">
                   {s.items.slice(0, 3).map((item) => (
-                    <span key={item} className="px-3 py-1 rounded-full bg-[#1a1a1a] border border-[#333333] text-[#f0f0f0] text-[13px] font-medium">
+                    <span key={item} className="px-3 py-1 rounded-full bg-[#1a1a1a] border border-[#333333] text-white text-base font-medium">
                       {item}
                     </span>
                   ))}
@@ -368,7 +368,7 @@ function Services() {
               {/* Timeline */}
               <div className="space-y-2">
                 <h4 className="font-mono text-[12px] text-[#f0c060] tracking-[0.15em] uppercase font-bold">Timeline</h4>
-                <p className="text-[#e8e8e8] text-sm">2-4 weeks</p>
+                <p className="text-white text-base">2-4 weeks</p>
               </div>
 
               {/* What's Included */}
@@ -376,7 +376,7 @@ function Services() {
                 <h4 className="font-mono text-[12px] text-[#f0c060] tracking-[0.15em] uppercase font-bold">What's Included</h4>
                 <ul className="flex flex-col gap-2">
                   {s.items.map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-[#e8e8e8] text-sm">
+                    <li key={item} className="flex items-center gap-3 text-white text-base">
                       <CheckCircle2 size={14} className="flex-shrink-0 text-[#f0c060]" />
                       <span>{item}</span>
                     </li>
