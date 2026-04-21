@@ -83,8 +83,8 @@ export default function Work() {
                     style={{ background: p.gradient }}>
                     <MockupVisual />
                     <div className="absolute top-4 right-4 bg-obsidian/80 border border-white/10 rounded-xl px-3 py-2">
-                      <div className="font-mono text-[9px] text-amber tracking-wider uppercase mb-0.5">Result</div>
-                      <div className="text-[11px] text-green-400 font-medium">{p.result}</div>
+                      <div className="font-mono text-[11px] text-amber tracking-wider uppercase mb-0.5">Result</div>
+                      <div className="text-[13px] text-green-400 font-medium">{p.result}</div>
                     </div>
                   </div>
                   {/* Info */}
@@ -93,10 +93,10 @@ export default function Work() {
                       <div className="flex-1">
                         <div className="flex flex-wrap gap-1.5 mb-3">
                           {p.tags.map((t) => (
-                            <span key={t} className="px-2.5 py-1 rounded-full border border-amber/20 bg-amber/[0.06] font-mono text-[10px] text-amber/80">{t}</span>
+                            <span key={t} className="px-2.5 py-1 rounded-full border border-amber/20 bg-amber/[0.06] font-mono text-[12px] text-amber/80">{t}</span>
                           ))}
                         </div>
-                        <h3 className="font-display text-[22px] font-medium text-snow tracking-[-0.5px] mb-2">{p.title}</h3>
+                        <h3 className="font-display text-[24px] font-medium text-snow tracking-[-0.5px] mb-2">{p.title}</h3>
                         <p className="text-[13px] text-ash font-light leading-[1.7]">{p.desc}</p>
                       </div>
                       <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-ash group-hover:border-amber/40 group-hover:text-amber transition-all flex-shrink-0 mt-1">

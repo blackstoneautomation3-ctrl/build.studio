@@ -146,9 +146,9 @@ export default function ProjectDetail({ params }: Props) {
             </Link>
             <div className="flex flex-wrap items-center gap-3 mb-6">
               {project.tags.map((t) => (
-                <span key={t} className="px-3 py-1 rounded-full border border-[#f0c060]/20 bg-[#f0c060]/[0.06] font-mono text-[10px] text-[#f0c060]/80">{t}</span>
+                <span key={t} className="px-3 py-1 rounded-full border border-[#f0c060]/20 bg-[#f0c060]/[0.06] font-mono text-[12px] text-[#f0c060]/80">{t}</span>
               ))}
-              <span className="font-mono text-[12px] text-[#555]">{project.industry} · {project.year}</span>
+              <span className="font-mono text-[14px] text-[#555]">{project.industry} · {project.year}</span>
             </div>
             <h1 className="font-display font-bold text-white leading-[1.0] tracking-[-0.04em] mb-5" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>
               {project.title}
@@ -158,7 +158,7 @@ export default function ProjectDetail({ params }: Props) {
             </p>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#4ade80]/20 bg-[#4ade80]/[0.06]">
               <span className="w-1.5 h-1.5 bg-[#4ade80] rounded-full" />
-              <span className="font-mono text-[11px] text-[#4ade80] tracking-wider font-medium">{project.result}</span>
+              <span className="font-mono text-[13px] text-[#4ade80] tracking-wider font-medium">{project.result}</span>
             </div>
           </div>
         </section>
@@ -181,7 +181,7 @@ export default function ProjectDetail({ params }: Props) {
             {project.metrics.map((m, i) => (
               <div key={i} className="bg-[#111] border border-[#1a1a1a] rounded-2xl p-6 text-center">
                 <div className="font-display font-bold text-[#f0c060] leading-none tracking-[-0.03em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}>{m}</div>
-                <div className="font-mono text-[10px] text-[#666] tracking-[0.15em] uppercase mt-3">{project.metricLabels[i]}</div>
+                <div className="font-mono text-[12px] text-[#666] tracking-[0.15em] uppercase mt-3">{project.metricLabels[i]}</div>
               </div>
             ))}
           </div>
@@ -191,17 +191,17 @@ export default function ProjectDetail({ params }: Props) {
         <section className="px-6 max-w-5xl mx-auto pb-16">
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
             <div>
-              <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em] uppercase mb-4">The Challenge</div>
+              <div className="font-mono text-[12px] text-[#f0c060] tracking-[0.2em] uppercase mb-4">The Challenge</div>
               <p className="text-[#c8c8c8] font-light leading-[1.9]" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>{project.challenge}</p>
             </div>
             <div>
-              <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em] uppercase mb-4">Our Solution</div>
+              <div className="font-mono text-[12px] text-[#f0c060] tracking-[0.2em] uppercase mb-4">Our Solution</div>
               <p className="text-[#c8c8c8] font-light leading-[1.9]" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>{project.solution}</p>
             </div>
           </div>
 
           <div className="mb-16">
-            <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em] uppercase mb-6">What We Delivered</div>
+            <div className="font-mono text-[12px] text-[#f0c060] tracking-[0.2em] uppercase mb-6">What We Delivered</div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               {project.deliverables.map((d) => (
                 <div key={d} className="flex items-center gap-3 bg-[#111] border border-[#1a1a1a] rounded-xl px-4 py-3">
@@ -214,10 +214,10 @@ export default function ProjectDetail({ params }: Props) {
 
           {/* Tech stack */}
           <div className="mb-16">
-            <div className="font-mono text-[10px] text-[#f0c060] tracking-[0.2em] uppercase mb-4">Tech Stack</div>
+            <div className="font-mono text-[12px] text-[#f0c060] tracking-[0.2em] uppercase mb-4">Tech Stack</div>
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
-                <span key={t} className="px-3 py-1.5 rounded-lg border border-[#222] bg-[#161616] font-mono text-[12px] text-[#a3a3a3]">{t}</span>
+                <span key={t} className="px-3 py-1.5 rounded-lg border border-[#222] bg-[#161616] font-mono text-[14px] text-[#a3a3a3]">{t}</span>
               ))}
             </div>
           </div>
