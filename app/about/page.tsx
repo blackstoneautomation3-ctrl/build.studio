@@ -54,22 +54,22 @@ export default function About() {
           <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
             <div className="reveal">
               <div className="section-label mb-6">Why We Exist</div>
-              <h2 className="font-display text-[clamp(32px,4vw,50px)] font-medium leading-[1.08] tracking-[-2px] text-snow mb-6">
+              <h2 className="font-display text-[clamp(32px,4vw,50px)] font-medium leading-[1.08] tracking-[-2px] text-white mb-6">
                 Built to Be <em className="gradient-text not-italic">Different.</em>
               </h2>
               <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/[0.06]">
                 {[["5+", "Years"], ["150+", "Projects"], ["12+", "Countries"]].map(([val, lbl]) => (
                   <div key={lbl}>
                     <div className="font-display text-[28px] font-medium gradient-text">{val}</div>
-                    <div className="font-mono text-[10px] text-ash tracking-wider uppercase mt-1">{lbl}</div>
+                    <div className="font-mono text-[10px] text-white tracking-wider uppercase mt-1">{lbl}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="flex flex-col gap-5 text-[15px] text-ash leading-[1.9] font-light reveal">
+            <div className="flex flex-col gap-5 text-[17px] text-white leading-[1.9] font-light reveal">
               <p>Too many businesses have been burned by agencies that over-promise, under-deliver, and disappear after the invoice is paid.</p>
-              <p className="font-display text-[19px] font-medium italic text-snow/80 leading-[1.5]">
+              <p className="font-display text-[22px] font-medium italic text-white/80 leading-[1.5]">
                 &ldquo;We built Build.Studio to be different.&rdquo;
               </p>
               <p>We believe great digital products should be accessible to every serious business — not just those with Silicon Valley budgets. World-class design, clean engineering, and intelligent automation at honest prices.</p>
@@ -89,8 +89,8 @@ export default function About() {
                   <span className="font-display text-3xl font-medium text-amber">A</span>
                 </div>
                 <div className="font-mono text-[10px] text-amber tracking-[3px] uppercase mb-3">Founder & Creative Director</div>
-                <h3 className="font-display text-4xl font-medium text-snow tracking-[-1px] mb-4">Ayo</h3>
-                <p className="text-[14px] text-ash leading-[1.9] font-light mb-7">
+                <h3 className="font-display text-4xl font-medium text-white tracking-[-1px] mb-4">Ayo</h3>
+                <p className="text-[16px] text-white leading-[1.9] font-light mb-7">
                   5+ years building web products, AI automation tools, and digital experiences at the highest level. Every project led with a bias for quality and a deep understanding of what clients actually need to grow.
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -102,13 +102,13 @@ export default function About() {
                 </div>
               </div>
               <div className="reveal">
-                <h2 className="font-display text-[clamp(28px,3.5vw,44px)] font-medium leading-[1.1] tracking-[-1.5px] text-snow mb-6">
+                <h2 className="font-display text-[clamp(28px,3.5vw,44px)] font-medium leading-[1.1] tracking-[-1.5px] text-white mb-6">
                   The person behind <em className="gradient-text not-italic">every project.</em>
                 </h2>
-                <p className="text-[15px] text-ash leading-[1.9] font-light mb-5">
+                <p className="text-[17px] text-white leading-[1.9] font-light mb-5">
                   Based in Lagos, Nigeria, Ayo brings a global mindset and local expertise to every engagement. Having worked with clients across 12+ countries, he understands what it takes to build products that compete at the highest level — regardless of timezone.
                 </p>
-                <p className="text-[15px] text-ash leading-[1.9] font-light mb-8">
+                <p className="text-[17px] text-white leading-[1.9] font-light mb-8">
                   Every project at Build.Studio is personally overseen by Ayo — from the first strategy call to the final deployment. You&apos;re never handed off to a junior team.
                 </p>
                 <Link href="/contact" className="btn-amber inline-flex">
@@ -127,12 +127,12 @@ export default function About() {
               {TEAM.map((t) => (
                 <div key={t.name} className="bg-carbon border border-white/[0.07] rounded-2xl p-7 hover-lift reveal">
                   <div className="text-3xl mb-5">{t.icon}</div>
-                  <div className="font-display text-[19px] font-medium text-snow mb-1 tracking-[-0.3px]">{t.name}</div>
+                  <div className="font-display text-[22px] font-medium text-white mb-1 tracking-[-0.3px]">{t.name}</div>
                   <div className="font-mono text-[10px] text-amber tracking-[1px] uppercase mb-4">{t.role}</div>
-                  <p className="text-[13px] text-ash font-light leading-[1.8] mb-5">{t.desc}</p>
+                  <p className="text-[15px] text-white font-light leading-[1.8] mb-5">{t.desc}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {t.skills.map((s) => (
-                      <span key={s} className="px-2 py-1 border border-white/[0.06] rounded font-mono text-[10px] text-ash">{s}</span>
+                      <span key={s} className="px-2 py-1 border border-white/[0.06] rounded font-mono text-[10px] text-white">{s}</span>
                     ))}
                   </div>
                 </div>
@@ -149,8 +149,8 @@ export default function About() {
               {VALUES.map((v) => (
                 <div key={v.num} className="p-8 border border-white/[0.07] rounded-2xl hover-lift reveal">
                   <div className="font-mono text-[10px] text-amber tracking-[3px] mb-5">{v.num}</div>
-                  <h3 className="font-display text-[22px] font-medium text-snow tracking-[-0.5px] mb-3">{v.title}</h3>
-                  <p className="text-[14px] text-ash font-light leading-[1.8]">{v.desc}</p>
+                  <h3 className="font-display text-[26px] font-medium text-white tracking-[-0.5px] mb-3">{v.title}</h3>
+                  <p className="text-[16px] text-white font-light leading-[1.8]">{v.desc}</p>
                 </div>
               ))}
             </div>

@@ -54,10 +54,10 @@ export default function Work() {
           <div className="flex flex-wrap gap-2 justify-center reveal">
             {FILTERS.map((f) => (
               <button key={f} onClick={() => setSelectedCategory(f)}
-                className={`px-4 py-2 rounded-full border text-[13px] font-light transition-all duration-200 ${
+                className={`px-4 py-2 rounded-full border text-[15px] font-light transition-all duration-200 ${
                   selectedCategory === f
                     ? "border-amber/40 bg-amber/10 text-amber"
-                    : "border-white/[0.08] text-ash hover:border-white/20 hover:text-snow"
+                    : "border-white/[0.08] text-white hover:border-white/20 hover:text-white"
                 }`}>
                 {f}
               </button>
@@ -69,8 +69,8 @@ export default function Work() {
         <section className="px-6 lg:px-12 pb-32 max-w-7xl mx-auto">
           {filteredProjects.length === 0 ? (
             <div className="text-center py-24">
-              <div className="text-4xl mb-4 text-ash">◎</div>
-              <p className="text-ash font-light">No projects found in this category yet.</p>
+              <div className="text-4xl mb-4 text-white">◎</div>
+              <p className="text-white font-light">No projects found in this category yet.</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
@@ -84,7 +84,7 @@ export default function Work() {
                     <MockupVisual />
                     <div className="absolute top-4 right-4 bg-obsidian/80 border border-white/10 rounded-xl px-3 py-2">
                       <div className="font-mono text-[11px] text-amber tracking-wider uppercase mb-0.5">Result</div>
-                      <div className="text-[13px] text-green-400 font-medium">{p.result}</div>
+                      <div className="text-[15px] text-green-400 font-medium">{p.result}</div>
                     </div>
                   </div>
                   {/* Info */}
@@ -96,10 +96,10 @@ export default function Work() {
                             <span key={t} className="px-2.5 py-1 rounded-full border border-amber/20 bg-amber/[0.06] font-mono text-[12px] text-amber/80">{t}</span>
                           ))}
                         </div>
-                        <h3 className="font-display text-[24px] font-medium text-snow tracking-[-0.5px] mb-2">{p.title}</h3>
-                        <p className="text-[13px] text-ash font-light leading-[1.7]">{p.desc}</p>
+                        <h3 className="font-display text-[28px] font-medium text-white tracking-[-0.5px] mb-2">{p.title}</h3>
+                        <p className="text-[15px] text-white font-light leading-[1.7]">{p.desc}</p>
                       </div>
-                      <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-ash group-hover:border-amber/40 group-hover:text-amber transition-all flex-shrink-0 mt-1">
+                      <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white group-hover:border-amber/40 group-hover:text-amber transition-all flex-shrink-0 mt-1">
                         <ArrowUpRight size={15} />
                       </div>
                     </div>

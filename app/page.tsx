@@ -149,7 +149,7 @@ function StatCard({ stat }: { stat: StatDef }) {
         {stat.prefix}{stat.target}<span style={{ color: "#f0c060" }}>{stat.suffix}</span>
         <span className="absolute -bottom-2 left-0 h-px bg-gradient-to-r from-[#f0c060] to-transparent" style={{ width: "100%" }} />
       </div>
-      <div className="font-mono text-[13px] text-[#f0f0f0] tracking-[0.15em] uppercase mt-4">{stat.label}</div>
+      <div className="font-mono text-[15px] text-[#f0f0f0] tracking-[0.15em] uppercase mt-4">{stat.label}</div>
     </div>
   );
 }
@@ -244,7 +244,7 @@ function Hero() {
       <div
         className={`absolute bottom-14 left-1/2 z-20 -translate-x-1/2 transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}
       >
-        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 lg:gap-10 font-mono text-[11px] sm:text-[12px] text-[#b8b8b8] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 lg:gap-10 font-mono text-[13px] sm:text-[12px] text-[#b8b8b8] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-center sm:text-left">
           <span>16-18 Day Delivery</span>
           <span className="text-[#f0c060]/30 hidden sm:inline">-</span>
           <span>Worldwide</span>
@@ -291,7 +291,7 @@ function TrustedBy() {
     <section className="py-24 px-6 lg:px-12 border-b border-[#2a2a2a] bg-[#111111]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 reveal">
-          <p className="font-mono text-[14px] md:text-[13px] text-[var(--text-secondary)] tracking-[0.22em] uppercase font-semibold">
+          <p className="font-mono text-[16px] md:text-[15px] text-[var(--text-secondary)] tracking-[0.22em] uppercase font-semibold">
             Trusted by teams at world-class companies
           </p>
         </div>
@@ -303,7 +303,7 @@ function TrustedBy() {
               title={logo.name}
             >
               <div
-                className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white text-[14px] shadow-sm border border-white/10"
+                className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white text-[16px] shadow-sm border border-white/10"
                 style={{ background: logo.color, filter: "grayscale(0.35) brightness(1.15)" }}
               >
                 {logo.letter}
@@ -463,8 +463,8 @@ function Portfolio() {
                     </div>
                     <div className="font-mono text-[12px] tracking-[0.15em] uppercase mb-2.5 text-[var(--amber-bright)]">{p.category} · {p.year}</div>
                     <h3 className="font-display font-bold text-[var(--text-primary)] tracking-[-0.02em]" style={{ fontSize: "1.55rem" }}>{p.title}</h3>
-                    <p className="text-[13px] text-[var(--text-secondary)] mt-2.5 leading-[1.72]">{p.desc}</p>
-                    <p className="text-[14px] font-semibold mt-4 text-[var(--green-live)]">Outcome: {p.result}</p>
+                    <p className="text-[15px] text-[var(--text-secondary)] mt-2.5 leading-[1.72]">{p.desc}</p>
+                    <p className="text-[16px] font-semibold mt-4 text-[var(--green-live)]">Outcome: {p.result}</p>
                   </div>
                   <div
                     className="w-10 h-10 rounded-full border flex items-center justify-center text-[var(--text-muted)] transition-all duration-300 flex-shrink-0 self-center group-hover:text-[var(--amber-bright)] group-hover:border-[var(--amber-glow)]"
@@ -537,11 +537,11 @@ function Process() {
           {PROCESS_STEPS.map((s, i) => (
             <div key={s.num} className="process-step-card reveal flex flex-col items-center text-center px-3 py-3 rounded-2xl" style={{ transitionDelay: `${100 + i * 70}ms` }}>
               <div className="w-11 h-11 rounded-full border flex items-center justify-center mb-6 z-10 process-step-orb" style={{ backgroundColor: "var(--obsidian)", borderColor: "var(--amber-glow)" }}>
-                <span className="font-mono text-[13px] text-[var(--amber-bright)]">{s.num}</span>
+                <span className="font-mono text-[15px] text-[var(--amber-bright)]">{s.num}</span>
               </div>
-              <div className="font-mono text-[11px] text-[var(--amber-bright)] tracking-[0.15em] uppercase mb-2 opacity-75">{s.day}</div>
-              <h3 className="font-display font-semibold text-[var(--text-primary)] text-[1.03rem] mb-2 tracking-[-0.02em]">{s.title}</h3>
-              <p className="text-[14px] text-[var(--text-secondary)] leading-[1.7]">{s.desc}</p>
+              <div className="font-mono text-[13px] text-[var(--amber-bright)] tracking-[0.15em] uppercase mb-2 opacity-75">{s.day}</div>
+              <h3 className="font-display font-semibold text-[var(--text-primary)] text-[1.15rem] mb-2 tracking-[-0.02em]">{s.title}</h3>
+              <p className="text-[16px] text-[var(--text-secondary)] leading-[1.7]">{s.desc}</p>
             </div>
           ))}
         </div>
@@ -552,14 +552,14 @@ function Process() {
             <div key={s.num} className="flex gap-5 reveal process-mobile-row" style={{ transitionDelay: `${80 + i * 65}ms` }}>
               <div className="flex flex-col items-center flex-shrink-0">
                 <div className="w-10 h-10 rounded-full border flex items-center justify-center z-10" style={{ backgroundColor: "var(--obsidian)", borderColor: "var(--amber-glow)" }}>
-                  <span className="font-mono text-[13px] text-[var(--amber-bright)]">{s.num}</span>
+                  <span className="font-mono text-[15px] text-[var(--amber-bright)]">{s.num}</span>
                 </div>
                 {i < PROCESS_STEPS.length - 1 && <div className="w-px flex-1 my-2 process-mobile-connector" />}
               </div>
               <div className="pb-9 pt-1.5">
-                <div className="font-mono text-[11px] text-[var(--amber-bright)] tracking-[0.15em] uppercase mb-1 opacity-75">{s.day}</div>
-                <h3 className="font-display font-semibold text-[var(--text-primary)] mb-2" style={{ fontSize: "1.125rem" }}>{s.title}</h3>
-                <p className="text-[13px] text-[var(--text-secondary)] leading-[1.75]">{s.desc}</p>
+                <div className="font-mono text-[13px] text-[var(--amber-bright)] tracking-[0.15em] uppercase mb-1 opacity-75">{s.day}</div>
+                <h3 className="font-display font-semibold text-[var(--text-primary)] mb-2" style={{ fontSize: "1.25rem" }}>{s.title}</h3>
+                <p className="text-[15px] text-[var(--text-secondary)] leading-[1.75]">{s.desc}</p>
               </div>
             </div>
           ))}
@@ -590,10 +590,10 @@ function Testimonials() {
               <div className="font-display text-[2.5rem] lg:text-[3.5rem] text-[#f0c060]/20 leading-none -mt-2">&ldquo;</div>
               <p className="font-display font-medium italic text-[#f0f0f0] leading-[1.65] tracking-[-0.01em] -mt-6" style={{ fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)" }}>{t.quote}</p>
               <div className="flex items-center gap-3 mt-auto pt-4 lg:pt-5 border-t border-[#2a2a2a]">
-                <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center font-body font-semibold text-[13px] lg:text-[14px] text-[#f0c060] flex-shrink-0">{t.initials}</div>
+                <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center font-body font-semibold text-[15px] lg:text-[16px] text-[#f0c060] flex-shrink-0">{t.initials}</div>
                 <div>
-                  <div className="text-[14px] lg:text-[13px] font-medium text-white">{t.name}</div>
-                  <div className="text-[12px] lg:text-[13px] text-[#b8b8b8]">{t.role}</div>
+                  <div className="text-[16px] lg:text-[15px] font-medium text-white">{t.name}</div>
+                  <div className="text-[12px] lg:text-[15px] text-[#b8b8b8]">{t.role}</div>
                 </div>
               </div>
             </div>
