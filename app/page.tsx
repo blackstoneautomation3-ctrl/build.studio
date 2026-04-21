@@ -187,20 +187,18 @@ function Hero() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-20 max-w-4xl mx-auto px-6 text-center w-full -mt-8 md:-mt-12">
+      <div className="relative z-20 max-w-4xl mx-auto px-6 text-center w-full mt-0 md:mt-4">
 
         {/* Headline */}
-        <div className={`mb-8 md:mb-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
-            <p className={`font-display font-extrabold uppercase tracking-[0.02em] md:tracking-[0.05em] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-              style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1.1, color: "#f0c060" }}>
-              DIGITAL PRODUCTS.
-            </p>
-            <p className={`font-display font-extrabold uppercase tracking-[0.02em] md:tracking-[0.05em] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-              style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1.1, color: "#f0c060" }}>
-              BUILT DIFFERENTLY.
-            </p>
-          </div>
+        <div className={`space-y-2 md:space-y-4 mb-8 md:mb-10 transition-all duration-700 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className={`font-display font-extrabold uppercase tracking-[0.02em] md:tracking-[0.05em] transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1.1, color: "#f0c060" }}>
+            DIGITAL PRODUCTS.
+          </p>
+          <p className={`font-display font-extrabold uppercase tracking-[0.02em] md:tracking-[0.05em] transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+            style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", lineHeight: 1.1, color: "#f0c060" }}>
+            BUILT DIFFERENTLY.
+          </p>
 
           <p
             className="max-w-xs sm:max-w-md md:max-w-2xl mx-auto text-[var(--text-secondary)] font-normal leading-[1.6] md:leading-[1.75]"
