@@ -327,7 +327,7 @@ function Services() {
         <div className="mb-16 reveal">
           <div className="section-label mb-5">What We Do</div>
           <h2 className="font-display font-bold text-white leading-[1.05] tracking-[-0.03em] max-w-xl"
-            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}>
+            style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
             Everything Your Product Needs —{" "}
             <em className="not-italic" style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               Under One Roof.
@@ -349,7 +349,7 @@ function Services() {
                     {s.icon}
                   </div>
                 </div>
-                <h3 className="font-display font-bold text-[#fafafa] tracking-[-0.02em]" style={{ fontSize: "clamp(1.2rem, 3vw, 1.5rem)" }}>{s.title}</h3>
+                <h3 className="font-display font-bold text-white tracking-[-0.02em]" style={{ fontSize: "clamp(1.4rem, 3.5vw, 1.8rem)" }}>{s.title}</h3>
                 <p className="text-[#e8e8e8] leading-[1.8] font-medium" style={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}>{s.desc}</p>
               </div>
 
@@ -421,7 +421,7 @@ function Portfolio() {
           <div>
             <div className="section-label mb-5">Selected Work</div>
             <h2 className="font-display font-bold text-[var(--text-primary)] leading-[1.03] tracking-[-0.03em]"
-              style={{ fontSize: "clamp(2.4rem, 5vw, 4.4rem)" }}>
+              style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.8rem)" }}>
               Selected Work
             </h2>
             <p className="text-[var(--text-secondary)] mt-4 max-w-xl leading-[1.75]" style={{ fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)" }}>
@@ -489,17 +489,17 @@ function About() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <div className="reveal">
           <div className="section-label mb-6">About BUILD.STUDIO</div>
-          <h2 className="font-display font-bold text-white leading-[1.08] tracking-[-0.03em] mb-8" style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
+          <h2 className="font-display font-bold text-white leading-[1.08] tracking-[-0.03em] mb-8" style={{ fontSize: "clamp(2.3rem, 4.5vw, 3.6rem)" }}>
             Built to Be{" "}
-            <em className="not-italic" style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Different.</em>
+            <em className="not-italic" style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontSize: "clamp(2.5rem, 5vw, 4.2rem)", color: "white" }}>Different.</em>
           </h2>
           <div className="flex flex-col gap-5 text-[#b8b8b8] font-light leading-[1.9]" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>
             <p>Too many businesses have been burned by agencies that over-promise, under-deliver, and disappear after the invoice is paid.</p>
-            <p className="font-display font-medium text-[#c8c8c8] leading-[1.6]" style={{ fontSize: "clamp(1.0625rem, 1.5vw, 1.25rem)", fontStyle: "italic" }}>
+            <p className="font-display font-medium text-white leading-[1.6]" style={{ fontSize: "clamp(1.2rem, 1.7vw, 1.4rem)" }}>
               &ldquo;We built Build.Studio to be different.&rdquo;
             </p>
             <p>We believe great digital products should be accessible to every serious business — not just those with Silicon Valley budgets.</p>
-            <p>Whatever your stage — if you&apos;re serious, we&apos;re in.</p>
+            <p>Whatever your stage &mdash; if you&apos;re serious, we&apos;re in.</p>
           </div>
           <div className="flex flex-wrap gap-3 mt-10">
             <Link href="/about" className="btn-amber" style={{ padding: "14px 30px", fontSize: "0.9rem" }}>Meet the Team <ArrowRight size={14} /></Link>
@@ -576,7 +576,7 @@ function Testimonials() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal">
           <div className="section-label mb-5 justify-center">Client Love</div>
-          <h2 className="font-display font-bold text-white leading-[1.05] tracking-[-0.03em]" style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}>
+          <h2 className="font-display font-bold text-white leading-[1.05] tracking-[-0.03em]" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
             Trusted by Founders &amp;{" "}
             <em className="not-italic" style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Brands Worldwide.</em>
           </h2>
