@@ -10,6 +10,7 @@ export const BLOG_POSTS = [
     excerpt: "From validating your idea to shipping your first version — a no-fluff guide to building software that actually gets users.",
     readTime: "12 min",
     date: "Mar 15, 2026",
+    featured: true,
     gradient: "linear-gradient(135deg, #0f0c29, #302b63)",
     content: [
       "Building a SaaS product in 2026 requires a clear strategy, the right tech stack, and a deep understanding of your users.",
@@ -27,6 +28,7 @@ export const BLOG_POSTS = [
     excerpt: "Most business websites fail at one critical moment — the first 5 seconds. Here's what's going wrong and exactly how to fix it.",
     readTime: "8 min",
     date: "Mar 8, 2026",
+    featured: false,
     gradient: "linear-gradient(135deg, #0a1a0a, #1a3a1a)",
     content: [
       "First impressions happen in milliseconds. Research shows that visitors form an opinion about your website in just 50 milliseconds — before they've even read a word.",
@@ -45,6 +47,7 @@ export const BLOG_POSTS = [
     excerpt: "You don't need a technical team to automate your business. The 5 workflows every small business should automate first.",
     readTime: "7 min",
     date: "Feb 28, 2026",
+    featured: false,
     gradient: "linear-gradient(135deg, #0a0a1a, #1a1a3e)",
     content: [
       "AI automation is no longer reserved for large enterprises with technical teams. With the right tools, any small business can automate repetitive tasks and save dozens of hours every week.",
@@ -63,6 +66,7 @@ export const BLOG_POSTS = [
     excerpt: "Bad design isn't just ugly — it's expensive. Studies show poor UX costs businesses millions in lost revenue each year.",
     readTime: "6 min",
     date: "Feb 20, 2026",
+    featured: false,
     gradient: "linear-gradient(135deg, #1a0a0a, #3a1a1a)",
     content: [
       "Bad UX design has a very real cost to your business. Every confusing navigation, every broken flow, every moment of user frustration represents lost revenue.",
@@ -82,6 +86,7 @@ export const BLOG_POSTS = [
     excerpt: "A full breakdown of how we took a startup from zero to a live product in under two weeks — what we prioritized and what we cut.",
     readTime: "10 min",
     date: "Feb 12, 2026",
+    featured: false,
     gradient: "linear-gradient(135deg, #080808, #0f2027)",
     content: [
       "Speed matters in startups. When a founder came to us with a validated idea and a tight deadline — 12 days to MVP — we had to be ruthless about priorities.",
@@ -100,6 +105,7 @@ export const BLOG_POSTS = [
     excerpt: "Both are powerful. Both are popular. But for most client projects and SaaS products, one is clearly the better choice.",
     readTime: "9 min",
     date: "Jan 30, 2026",
+    featured: false,
     gradient: "linear-gradient(135deg, #0d1a0d, #1a3a1a)",
     content: [
       "React is a library for building user interfaces. Next.js is a framework built on top of React that adds routing, server-side rendering, API routes, and much more.",

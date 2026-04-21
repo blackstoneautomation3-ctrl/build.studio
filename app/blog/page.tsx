@@ -1,18 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { BLOG_POSTS } from "./[slug]/page";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Navbar, Footer, PageHero, useReveal } from "@/components/ui";
 
-export const POSTS = [
-  { slug: "how-to-build-saas-product-2026", category: "Development", title: "How to Build a SaaS Product in 2026 — The Complete Guide", excerpt: "From validating your idea to shipping your first version — a no-fluff guide to building software that actually gets users.", readTime: "12 min", date: "Mar 15, 2026", featured: true, gradient: "linear-gradient(135deg, #0f0c29, #302b63)", content: "Building a SaaS product in 2026 requires a clear strategy, the right tech stack, and a deep understanding of your users. In this guide, we cover everything from idea validation to launch and growth." },
-  { slug: "why-your-website-is-losing-clients", category: "Design", title: "Why Your Website Is Losing You Clients (And How to Fix It)", excerpt: "Most business websites fail at one critical moment — the first 5 seconds. Here's what's going wrong and exactly how to fix it.", readTime: "8 min", date: "Mar 8, 2026", featured: false, gradient: "linear-gradient(135deg, #0a1a0a, #1a3a1a)", content: "First impressions happen in milliseconds. If your website doesn't immediately communicate your value, visitors leave — and they don't come back. Here's how to fix the most common mistakes." },
-  { slug: "ai-automation-for-small-businesses", category: "AI & Automation", title: "AI Automation for Small Businesses — Where to Start", excerpt: "You don't need a technical team to automate your business. The 5 workflows every small business should automate first.", readTime: "7 min", date: "Feb 28, 2026", featured: false, gradient: "linear-gradient(135deg, #0a0a1a, #1a1a3e)", content: "AI automation is no longer reserved for large enterprises. With tools like Make.com, Zapier, and OpenAI, small businesses can automate repetitive tasks and save dozens of hours per week." },
-  { slug: "real-cost-of-bad-ux-design", category: "Design", title: "The Real Cost of Bad UX Design — And How to Avoid It", excerpt: "Bad design isn't just ugly — it's expensive. Studies show poor UX costs businesses millions in lost revenue each year.", readTime: "6 min", date: "Feb 20, 2026", featured: false, gradient: "linear-gradient(135deg, #1a0a0a, #3a1a1a)", content: "Poor user experience leads to abandoned carts, high bounce rates, and lost customers. Investing in good UX design pays dividends — often returning 10x the investment in improved conversions." },
-  { slug: "how-we-built-mvp-in-12-days", category: "Case Study", title: "How We Built a Client MVP in 12 Days — Behind the Scenes", excerpt: "A full breakdown of how we took a startup from zero to a live product in under two weeks — what we prioritized and what we cut.", readTime: "10 min", date: "Feb 12, 2026", featured: false, gradient: "linear-gradient(135deg, #080808, #0f2027)", content: "Speed matters in startups. In this case study, we break down how Build.Studio delivered a fully functional MVP in just 12 days — from discovery to deployment." },
-  { slug: "nextjs-vs-react-2026", category: "Development", title: "Next.js vs React — Which Should You Build With in 2026?", excerpt: "Both are powerful. Both are popular. But for most client projects and SaaS products, one is clearly the better choice.", readTime: "9 min", date: "Jan 30, 2026", featured: false, gradient: "linear-gradient(135deg, #0d1a0d, #1a3a1a)", content: "React is a library. Next.js is a framework built on top of React. For most production projects in 2026, Next.js is the clear winner — offering SSR, file-based routing, and built-in optimization." },
-];
+const POSTS = BLOG_POSTS;
 
 const CATS = ["All", "Development", "Design", "AI & Automation", "Case Study"];
 
@@ -38,7 +32,7 @@ export default function Blog() {
           <div className="section-label mb-6 reveal">Featured Article</div>
           <Link href={`/blog/${featured.slug}`} className="grid lg:grid-cols-2 overflow-hidden rounded-2xl border border-white/[0.07] hover-lift cursor-pointer reveal block">
             <div className="h-64 lg:h-auto flex items-center justify-center min-h-[240px]" style={{ background: featured.gradient }}>
-              <div className="w-16 h-16 bg-amber/15 border border-amber/25 rounded-2xl flex items-center justify-center text-2xl">⚡</div>
+              <div className="w-16 h-16 bg-amber/15 border border-amber/25 rounded-2xl flex items-center justify-center text-2xl">â¡</div>
             </div>
             <div className="bg-ink p-10 flex flex-col gap-4">
               <div className="flex items-center gap-3 flex-wrap">
@@ -107,12 +101,12 @@ export default function Blog() {
                 Get the Latest <em className="gradient-text not-italic">Insights.</em>
               </h2>
               <p className="text-[15px] text-white font-light leading-[1.8] max-w-md mx-auto mb-8">
-                New articles on web development, design, and AI — delivered to your inbox every two weeks. No spam.
+                New articles on web development, design, and AI â delivered to your inbox every two weeks. No spam.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com"
                   className="flex-1 bg-obsidian border border-white/[0.1] rounded-xl px-4 py-3.5 text-[16px] text-white placeholder-ash font-light outline-none focus:border-amber/40 transition-colors" />
-                <button className="btn-amber whitespace-nowrap">Subscribe →</button>
+                <button className="btn-amber whitespace-nowrap">Subscribe â</button>
               </div>
             </div>
           </div>
