@@ -88,40 +88,49 @@ export default function Services() {
               }`}
             >
               <div className={i % 2 === 1 ? "lg:[direction:ltr]" : ""}>
-                <div className="font-mono text-[10px] text-amber tracking-[3px] mb-5">{s.num}</div>
-                <div className="text-3xl mb-5">{s.icon}</div>
-                <h2 className="font-display text-[clamp(28px,3.5vw,42px)] font-medium tracking-[-1.5px] text-snow mb-3">{s.title}</h2>
-                <p className="font-display text-[16px] italic text-amber/70 mb-5">{s.tagline}</p>
-                <p className="text-[14px] text-ash leading-[1.9] font-light mb-7">{s.desc}</p>
-                <div className="flex flex-wrap gap-2 mb-7">
-                  {s.stack.map((t) => (
-                    <span key={t} className="px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] font-mono text-[11px] text-silver">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-8 mb-8">
-                  <div>
-                    <div className="font-mono text-[10px] text-ash tracking-[1.5px] uppercase mb-1">Timeline</div>
-                    <div className="text-[15px] font-medium text-snow">{s.timeline}</div>
-                  </div>
-                </div>
-                <Link href="/contact" className="btn-amber inline-flex">
-                  Start This Project <ArrowRight size={14} />
-                </Link>
-              </div>
-
-              <div className={i % 2 === 1 ? "lg:[direction:ltr]" : ""}>
                 <div className="bg-carbon border border-white/[0.07] rounded-2xl p-8">
-                  <div className="font-mono text-[10px] text-amber tracking-[2.5px] uppercase mb-6">What&apos;s Included</div>
-                  <ul className="flex flex-col gap-4">
-                    {s.items.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-[14px] text-ash leading-[1.8]">
-                        <span className="text-amber mt-1">✓</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="font-mono text-[10px] text-amber tracking-[3px] mb-5">{s.num}</div>
+                  <div className="text-3xl mb-5">{s.icon}</div>
+                  <h2 className="font-display text-[clamp(28px,3.5vw,42px)] font-medium tracking-[-1.5px] text-snow mb-3">{s.title}</h2>
+                  <p className="font-display text-[16px] italic text-amber/70 mb-5">{s.tagline}</p>
+                  <p className="text-[14px] text-ash leading-[1.9] font-light mb-7">{s.desc}</p>
+                  
+                  {/* Tech Stack */}
+                  <div className="mb-7">
+                    <div className="font-mono text-[10px] text-amber tracking-[2.5px] uppercase mb-3">Tech Stack</div>
+                    <div className="flex flex-wrap gap-2">
+                      {s.stack.map((t) => (
+                        <span key={t} className="px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] font-mono text-[11px] text-silver">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Timeline */}
+                  <div className="flex gap-8 mb-7">
+                    <div>
+                      <div className="font-mono text-[10px] text-ash tracking-[1.5px] uppercase mb-1">Timeline</div>
+                      <div className="text-[15px] font-medium text-snow">{s.timeline}</div>
+                    </div>
+                  </div>
+                  
+                  {/* What's Included */}
+                  <div className="mb-8">
+                    <div className="font-mono text-[10px] text-amber tracking-[2.5px] uppercase mb-3">What&apos;s Included</div>
+                    <ul className="flex flex-col gap-4">
+                      {s.items.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-[14px] text-ash leading-[1.8]">
+                          <span className="text-amber mt-1">â</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <Link href="/contact" className="btn-amber inline-flex">
+                    Start This Project <ArrowRight size={14} />
+                  </Link>
                 </div>
               </div>
             </div>
