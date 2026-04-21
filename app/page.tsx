@@ -144,12 +144,12 @@ const STATS: StatDef[] = [
 
 function StatCard({ stat }: { stat: StatDef }) {
   return (
-    <div className="flex flex-col items-center justify-center py-12 px-6 border-r border-[#1a1a1a] last:border-r-0 hover:bg-white/[0.015] transition-colors group">
-      <div className="font-display font-bold text-[#f4f4f4] leading-none tracking-[-0.04em] relative" style={{ fontSize: "clamp(2.25rem, 4vw, 3.5rem)" }}>
+    <div className="flex flex-col items-center justify-center py-12 px-6 border-r border-[#2a2a2a] last:border-r-0 hover:bg-white/[0.015] transition-colors group">
+      <div className="font-display font-bold text-[#ffffff] leading-none tracking-[-0.04em] relative" style={{ fontSize: "clamp(2.25rem, 4vw, 3.5rem)" }}>
         {stat.prefix}{stat.target}<span style={{ color: "#f0c060" }}>{stat.suffix}</span>
         <span className="absolute -bottom-2 left-0 h-px bg-gradient-to-r from-[#f0c060] to-transparent" style={{ width: "100%" }} />
       </div>
-      <div className="font-mono text-[11px] text-[#e5e5e5] tracking-[0.15em] uppercase mt-4">{stat.label}</div>
+      <div className="font-mono text-[11px] text-[#f0f0f0] tracking-[0.15em] uppercase mt-4">{stat.label}</div>
     </div>
   );
 }
@@ -225,7 +225,7 @@ function Hero() {
           <Link
             href="/work"
             className="btn-ghost min-h-[52px] justify-center"
-            style={{ padding: "18px 44px", fontSize: "0.9375rem", borderRadius: "16px", borderColor: "rgba(240,192,96,0.35)", color: "#f4f4f4", background: "rgba(255,255,255,0.02)" }}
+            style={{ padding: "18px 44px", fontSize: "0.9375rem", borderRadius: "16px", borderColor: "rgba(240,192,96,0.35)", color: "#ffffff", background: "rgba(255,255,255,0.02)" }}
           >
             See Our Work
           </Link>
@@ -235,7 +235,7 @@ function Hero() {
         <div
           className={`flex flex-col items-center gap-2 mt-16 transition-all duration-700 delay-400 ${visible ? "opacity-100" : "opacity-0"}`}
         >
-          <span className="font-mono text-[10px] text-[#a3a3a3] tracking-[0.2em] uppercase">Scroll to explore</span>
+          <span className="font-mono text-[10px] text-[#b8b8b8] tracking-[0.2em] uppercase">Scroll to explore</span>
           <div className="w-px h-10 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
         </div>
       </div>
@@ -244,7 +244,7 @@ function Hero() {
       <div
         className={`absolute bottom-14 left-1/2 z-20 -translate-x-1/2 transition-all duration-700 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}
       >
-        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 lg:gap-10 font-mono text-[9px] sm:text-[10px] text-[#a3a3a3] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 lg:gap-10 font-mono text-[9px] sm:text-[10px] text-[#b8b8b8] tracking-[0.1em] sm:tracking-[0.15em] uppercase text-center sm:text-left">
           <span>16-18 Day Delivery</span>
           <span className="text-[#f0c060]/30 hidden sm:inline">-</span>
           <span>Worldwide</span>
@@ -277,7 +277,7 @@ function Hero() {
 // ─── STATS ───────────────────────────────────────────────────────────────────
 function StatsBar() {
   return (
-    <div className="border-t border-b border-[#1a1a1a] bg-[#0d0d0d]">
+    <div className="border-t border-b border-[#2a2a2a] bg-[#111111]">
       <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-[#1a1a1a]">
         {STATS.map((s, i) => <StatCard key={i} stat={s} />)}
       </div>
@@ -288,7 +288,7 @@ function StatsBar() {
 // ─── TRUSTED BY ──────────────────────────────────────────────────────────────
 function TrustedBy() {
   return (
-    <section className="py-24 px-6 lg:px-12 border-b border-[#1a1a1a] bg-[#0a0a0a]">
+    <section className="py-24 px-6 lg:px-12 border-b border-[#2a2a2a] bg-[#111111]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 reveal">
           <p className="font-mono text-[12px] md:text-[13px] text-[var(--text-secondary)] tracking-[0.22em] uppercase font-semibold">
@@ -322,7 +322,7 @@ function TrustedBy() {
 // ─── SERVICES ────────────────────────────────────────────────────────────────
 function Services() {
   return (
-    <section className="py-36 px-6 lg:px-12 bg-[#0a0a0a]">
+    <section className="py-36 px-6 lg:px-12 bg-[#111111]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 reveal">
           <div className="section-label mb-5">What We Do</div>
@@ -333,7 +333,7 @@ function Services() {
               Under One Roof.
             </em>
           </h2>
-          <p className="text-[#a3a3a3] mt-4 font-light leading-[1.85] max-w-lg" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>
+          <p className="text-[#b8b8b8] mt-4 font-light leading-[1.85] max-w-lg" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>
             From the first wireframe to the final deployment — design, development, and intelligence.
           </p>
         </div>
@@ -485,7 +485,7 @@ function Portfolio() {
 // ─── ABOUT ───────────────────────────────────────────────────────────────────
 function About() {
   return (
-    <section className="py-36 px-6 lg:px-12 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+    <section className="py-36 px-6 lg:px-12 bg-[#111111] border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <div className="reveal">
           <div className="section-label mb-6">About BUILD.STUDIO</div>
@@ -493,7 +493,7 @@ function About() {
             Built to Be{" "}
             <em className="not-italic" style={{ background: "linear-gradient(135deg, #f0cb8a, #e8b86d)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Different.</em>
           </h2>
-          <div className="flex flex-col gap-5 text-[#a3a3a3] font-light leading-[1.9]" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>
+          <div className="flex flex-col gap-5 text-[#b8b8b8] font-light leading-[1.9]" style={{ fontSize: "clamp(0.9375rem, 1.3vw, 1.0625rem)" }}>
             <p>Too many businesses have been burned by agencies that over-promise, under-deliver, and disappear after the invoice is paid.</p>
             <p className="font-display font-medium text-[#c8c8c8] leading-[1.6]" style={{ fontSize: "clamp(1.0625rem, 1.5vw, 1.25rem)", fontStyle: "italic" }}>
               &ldquo;We built Build.Studio to be different.&rdquo;
@@ -572,7 +572,7 @@ function Process() {
 // ─── TESTIMONIALS ────────────────────────────────────────────────────────────
 function Testimonials() {
   return (
-    <section className="py-36 px-6 lg:px-12 bg-[#0a0a0a] border-t border-[#1a1a1a]">
+    <section className="py-36 px-6 lg:px-12 bg-[#111111] border-t border-[#2a2a2a]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 reveal">
           <div className="section-label mb-5 justify-center">Client Love</div>
@@ -583,17 +583,17 @@ function Testimonials() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {TESTIMONIALS.map((t) => (
-            <div key={t.initials} className="glass rounded-2xl p-6 lg:p-8 flex flex-col gap-4 lg:gap-5 hover-lift reveal border border-[#1a1a1a]">
+            <div key={t.initials} className="glass rounded-2xl p-6 lg:p-8 flex flex-col gap-4 lg:gap-5 hover-lift reveal border border-[#2a2a2a]">
               <div className="flex gap-0.5">
                 {Array.from({ length: t.stars }).map((_, i) => <span key={i} style={{ color: "#f0c060", fontSize: "13px" }}>★</span>)}
               </div>
               <div className="font-display text-[2.5rem] lg:text-[3.5rem] text-[#f0c060]/20 leading-none -mt-2">&ldquo;</div>
               <p className="font-display font-medium italic text-[#d4d4d4] leading-[1.65] tracking-[-0.01em] -mt-6" style={{ fontSize: "clamp(0.9375rem, 2vw, 1.0625rem)" }}>{t.quote}</p>
-              <div className="flex items-center gap-3 mt-auto pt-4 lg:pt-5 border-t border-[#1a1a1a]">
+              <div className="flex items-center gap-3 mt-auto pt-4 lg:pt-5 border-t border-[#2a2a2a]">
                 <div className="w-8 h-8 lg:w-9 lg:h-9 rounded-full bg-[#f0c060]/10 border border-[#f0c060]/20 flex items-center justify-center font-body font-semibold text-[11px] lg:text-[12px] text-[#f0c060] flex-shrink-0">{t.initials}</div>
                 <div>
                   <div className="text-[12px] lg:text-[13px] font-medium text-white">{t.name}</div>
-                  <div className="text-[10px] lg:text-[11px] text-[#a3a3a3]">{t.role}</div>
+                  <div className="text-[10px] lg:text-[11px] text-[#b8b8b8]">{t.role}</div>
                 </div>
               </div>
             </div>

@@ -112,27 +112,27 @@ export default function Contact() {
                     
                     <a
                       href={createEmailMessage()}
-                      className="bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-white/10 hover:border-[#f0c060]/30 text-white rounded-xl p-6 flex flex-col items-center gap-3 transition-all hover:scale-105 cursor-pointer"
+                      className="bg-[#222222] hover:bg-[#2a2a2a] border border-white/10 hover:border-[#f0c060]/30 text-white rounded-xl p-6 flex flex-col items-center gap-3 transition-all hover:scale-105 cursor-pointer"
                     >
                       <div className="w-12 h-12 bg-[#f0c060]/20 rounded-full flex items-center justify-center">
                         <span className="text-2xl">✉️</span>
                       </div>
                       <div className="text-center">
                         <h4 className="font-semibold text-white mb-1">Email</h4>
-                        <p className="text-xs text-[#a3a3a3]">Formal inquiry</p>
+                        <p className="text-xs text-[#b8b8b8]">Formal inquiry</p>
                       </div>
                     </a>
                     
                     <a
                       href="tel:+2348166494104"
-                      className="bg-[#0a0a0a] hover:bg-[#1a1a1a] border border-white/10 hover:border-[#f0c060]/30 text-white rounded-xl p-6 flex flex-col items-center gap-3 transition-all hover:scale-105 cursor-pointer"
+                      className="bg-[#111111] hover:bg-[#222222] border border-white/10 hover:border-[#f0c060]/30 text-white rounded-xl p-6 flex flex-col items-center gap-3 transition-all hover:scale-105 cursor-pointer"
                     >
                       <div className="w-12 h-12 bg-[#f0c060]/20 rounded-full flex items-center justify-center">
                         <span className="text-2xl">📞</span>
                       </div>
                       <div className="text-center">
                         <h4 className="font-semibold text-white mb-1">Phone Call</h4>
-                        <p className="text-xs text-[#a3a3a3]">Direct conversation</p>
+                        <p className="text-xs text-[#b8b8b8]">Direct conversation</p>
                       </div>
                     </a>
                   </div>
@@ -140,7 +140,7 @@ export default function Contact() {
                   <div className="mt-6 text-center">
                     <button 
                       onClick={() => setShowContactOptions(false)}
-                      className="text-[#a3a3a3] hover:text-[#f0c060] transition-colors text-sm"
+                      className="text-[#b8b8b8] hover:text-[#f0c060] transition-colors text-sm"
                     >
                       ← Back to form
                     </button>

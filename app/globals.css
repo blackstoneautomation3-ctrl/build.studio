@@ -17,13 +17,13 @@
   --smoke:    #2a2a2a;
 
   /* Text — WCAG AA/AAA compliant - Brighter for better visibility */
-  --snow:     #fafafa;
-  --fog:      #e5e5e5;
-  --ash:      #d4d4d4;
-  --muted:    #a3a3a3;
-  --text-primary: #fafafa;
-  --text-secondary: #e5e5e5;
-  --text-muted: #d4d4d4;
+  --snow:     #ffffff;
+  --fog:      #f0f0f0;
+  --ash:      #e8e8e8;
+  --muted:    #b8b8b8;
+  --text-primary: #ffffff;
+  --text-secondary: #f0f0f0;
+  --text-muted: #e8e8e8;
 
   /* Amber Gold — primary accent */
   --amber:       #e8b86d;
