@@ -350,7 +350,7 @@ function Services() {
                   </div>
                 </div>
                 <h3 className="font-display font-bold text-white tracking-[-0.02em]" style={{ fontSize: "clamp(1.4rem, 3.5vw, 1.8rem)" }}>{s.title}</h3>
-                <p className="text-[#e8e8e8] leading-[1.8] font-medium" style={{ fontSize: "clamp(0.95rem, 2vw, 1.1rem)" }}>{s.desc}</p>
+                <p className="text-white leading-[1.8] font-medium" style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.3rem)" }}>{s.desc}</p>
               </div>
 
               {/* Tech Stack */}
