@@ -345,7 +345,7 @@ function Services() {
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                   <div className="font-mono text-[12px] text-[#f0c060] tracking-[0.2em] font-bold">{s.num}</div>
-                  <div className="w-12 h-12 rounded-xl bg-[#f0c060]/15 border border-[#f0c060]/30 flex items-center justify-center text-[#f0c060] group-hover:scale-105 transition-transform">
+                  <div className="w-14 h-14 rounded-xl bg-[#f0c060]/25 border border-[#f0c060]/40 flex items-center justify-center text-white group-hover:scale-105 transition-transform">
                     {s.icon}
                   </div>
                 </div>
