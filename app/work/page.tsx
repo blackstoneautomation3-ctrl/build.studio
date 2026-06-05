@@ -11,9 +11,10 @@ const ALL_PROJECTS = [
   { title: "MedSync Portal", category: "Healthcare", tags: ["Web App", "Healthcare"], desc: "A patient management portal with AI-powered onboarding, appointment scheduling, and automated follow-up workflows.", result: "83% reduction in admin overhead", gradient: "linear-gradient(135deg, #080808 0%, #0f2027 50%, #203a43 100%)", year: "2025" },
   { title: "LearnArc Platform", category: "EdTech", tags: ["SaaS", "EdTech", "AI"], desc: "An online learning platform with course creation tools, AI tutoring assistant, and student progress analytics.", result: "2,000+ students onboarded in month one", gradient: "linear-gradient(135deg, #1a0a0a 0%, #3a1a1a 50%, #1a0808 100%)", year: "2024" },
   { title: "PropVault CRM", category: "Real Estate", tags: ["Web App", "CRM"], desc: "A CRM and property management platform with automated client communication, document signing, and analytics.", result: "Agent productivity increased 70%", gradient: "linear-gradient(135deg, #080808 0%, #0a1628 50%, #0f2744 100%)", year: "2024" },
+  { title: "SwiftRoute Logistics", category: "Logistics", tags: ["Web App", "Logistics", "Tracking"], desc: "A full logistics company platform with real-time shipment tracking, freight quoting, multi-service booking, and a customer portal.", result: "50K+ monthly shipments processed", gradient: "linear-gradient(135deg, #050e1a 0%, #0d1f35 50%, #07111f 100%)", year: "2026" },
 ];
 
-const FILTERS = ["All", "SaaS", "Fintech", "E-commerce", "Healthcare", "EdTech", "Real Estate"];
+const FILTERS = ["All", "SaaS", "Fintech", "E-commerce", "Healthcare", "EdTech", "Real Estate", "Logistics"];
 
 function MockupVisual() {
   return (

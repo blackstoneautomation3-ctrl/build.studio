@@ -105,6 +105,23 @@ const PROJECTS = [
     metrics: ["70%","5→1","48h→2h","$2.3M"],
     metricLabels: ["Productivity boost","Tools consolidated","Contract turnaround","Deals closed Q1"],
   },
+  {
+    slug: "swiftroute-logistics",
+    title: "SwiftRoute Logistics",
+    category: "Logistics",
+    tags: ["Web App","Logistics","Tracking"],
+    industry: "Freight & Logistics",
+    year: "2026",
+    result: "50K+ monthly shipments processed",
+    gradient: "linear-gradient(135deg, #050e1a 0%, #0d1f35 50%, #07111f 100%)",
+    tech: ["Next.js","TypeScript","Tailwind CSS","REST APIs"],
+    desc: "A full-featured logistics company platform with real-time shipment tracking, multi-modal freight booking, customs management, and a customer self-service portal.",
+    challenge: "The client needed a complete digital presence for their freight business — shipment tracking, quote requests, service listings, and customer onboarding — built and launched within 3 weeks.",
+    solution: "We designed and built SwiftRoute from the ground up: a branded Next.js website with 5 pages, a live shipment tracking system, a multi-step quote form, and a full services showcase — all fully responsive and production-ready.",
+    deliverables: ["Multi-page logistics website","Real-time shipment tracking","Quote request system","Services showcase","About & team pages","Mobile-responsive design"],
+    metrics: ["3 wks","5 pages","100%","4.9/5"],
+    metricLabels: ["Time to launch","Core pages built","Mobile responsive","Client rating"],
+  },
 ];
 
 interface Props { params: { slug: string }; }

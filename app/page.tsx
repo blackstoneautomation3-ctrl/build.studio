@@ -115,6 +115,18 @@ export const ALL_PROJECTS = [
     year: "2024",
     tech: ["Next.js","PostgreSQL","Zapier","DocuSign"],
   },
+  {
+    slug: "swiftroute-logistics",
+    title: "SwiftRoute Logistics",
+    category: "Logistics",
+    tags: ["Web App","Logistics","Tracking"],
+    industry: "Freight & Logistics",
+    desc: "A full-featured logistics company platform with real-time shipment tracking, freight quoting, multi-service booking, and a customer portal.",
+    result: "50K+ monthly shipments processed",
+    gradient: "linear-gradient(135deg, #050e1a 0%, #0d1f35 50%, #07111f 100%)",
+    year: "2026",
+    tech: ["Next.js","TypeScript","Tailwind CSS","REST APIs"],
+  },
 ];
 
 const PROCESS_STEPS = [
